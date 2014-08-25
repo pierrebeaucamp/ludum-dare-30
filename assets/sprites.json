@@ -1,0 +1,75 @@
+{"frames": {
+
+"Panda_0.png":
+{
+	"frame": {"x":2,"y":682,"w":24,"h":24},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
+	"sourceSize": {"w":24,"h":24},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"Panda_1.png":
+{
+	"frame": {"x":28,"y":682,"w":24,"h":24},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
+	"sourceSize": {"w":24,"h":24},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"Panda_2.png":
+{
+	"frame": {"x":54,"y":682,"w":24,"h":24},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
+	"sourceSize": {"w":24,"h":24},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"Panda_3.png":
+{
+	"frame": {"x":80,"y":682,"w":24,"h":24},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
+	"sourceSize": {"w":24,"h":24},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"Panda_4.png":
+{
+	"frame": {"x":106,"y":682,"w":24,"h":24},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
+	"sourceSize": {"w":24,"h":24},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"world-collision.png":
+{
+	"frame": {"x":2,"y":344,"w":4088,"h":336},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":4088,"h":336},
+	"sourceSize": {"w":4088,"h":336},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"world.png":
+{
+	"frame": {"x":2,"y":2,"w":4092,"h":340},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":4092,"h":340},
+	"sourceSize": {"w":4092,"h":340},
+	"pivot": {"x":0.5,"y":0.5}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "sprites.png",
+	"format": "RGBA8888",
+	"size": {"w":4096,"h":708},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:4c0b56329c0acbcce3fcb32be10c915c:72c1d6b1268085994646325ce20f1545:1eabdf11f75e3a4fe3147baf7b5be24b$"
+}
+}

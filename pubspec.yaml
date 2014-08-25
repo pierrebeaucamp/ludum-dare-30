@@ -1,0 +1,6 @@
+name: ludumdare_30
+author: Pierre Beaucamp <mail@pierrebeaucamp.com>
+homepage: https://pierrebeaucamp.github.io/ludum-dare-30
+dependencies:
+  browser: any
+  play_pixi: any
