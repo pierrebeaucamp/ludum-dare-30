@@ -1,6 +1,7 @@
 part of ld30;
 
 class Game {
+  BulletManager bulletManager;
   CollisionManager collisionManager;
   InputHelper inputHelper;
   NPCManager npcManager;
@@ -14,6 +15,7 @@ class Game {
   num gravity = 0.098;
 
   Game() {
+    bulletManager = new BulletManager(this);
     collisionManager = new CollisionManager(this);
     inputHelper = new InputHelper(this);
     npcManager = new NPCManager(this);
@@ -32,8 +34,8 @@ class Game {
 
   void update() {
     if (currentState != states["paused"]) {
+      bulletManager.update();
       player.update();
-      collisionManager.update();
       world.update();
       npcManager.update();
     }

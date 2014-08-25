@@ -5,8 +5,10 @@ class Player {
   bool facingRight = true;
   bool grounded = false;
   num drag = 0.6;
+  num lastBulletShot = 0;
   num maxSpeed = 1;
   int originalHeight, originalWidth;
+  int shotDelay = 200;
   num realAnimationSpeed = 0.1;
 
   Game game;
@@ -40,6 +42,7 @@ class Player {
   void updateAlive() {
     bool currFacingRight = facingRight;
     view.animationSpeed = realAnimationSpeed * dt;
+    game.collisionManager.floorCheck(this);
     !grounded ? acceleration.y += game.gravity : acceleration.y = 0;
 
     if (acceleration.x > 0) {
@@ -79,6 +82,20 @@ class Player {
     if (currFacingRight != facingRight) {
       view.scale.x *= -1;
       view.position.x = view.width / 2 - view.scale.x * view.width / 2;
+    }
+
+    if (game.inputHelper.isPressed(KeyCode.SPACE) ||
+        game.inputHelper.isPressed(KeyCode.ENTER) ||
+        game.inputHelper.isPressed(KeyCode.Z) ||
+        game.inputHelper.isPressed(KeyCode.X) ||
+        game.inputHelper.isPressed(KeyCode.NUM_ZERO) ||
+        game.inputHelper.isPressed(KeyCode.SHIFT) ||
+        game.inputHelper.isPressed(KeyCode.PERIOD)) {
+      if (currentTime - lastBulletShot > shotDelay) {
+        game.bulletManager.shoot(view.position.x, view.position.y,
+                                 facingRight ? 1 : -1);
+        lastBulletShot = currentTime;
+      }
     }
   }
 

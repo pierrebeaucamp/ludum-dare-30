@@ -4,6 +4,7 @@ import "dart:html";
 import 'dart:web_audio';
 import 'package:play_pixi/pixi.dart' as PIXI;
 
+part "dart/bulletManager.dart";
 part "dart/collisionManager.dart";
 part "dart/game.dart";
 part "dart/inputHelper.dart";
@@ -25,13 +26,14 @@ var states = {
 };
 
 int currentState;
+num currentTime;
 num dt, lastTime = 0;
 int modulo = 0;
 int width, height;
 bool _initialized = false;
 
 void animate(num time) {
-  num currentTime = time;
+  currentTime = time;
   num passedTime = currentTime - lastTime;
   if (passedTime > 100) passedTime = 100;
   dt = passedTime * 0.06;
@@ -91,6 +93,12 @@ void resize([_]) {
                                                            width / 4, height);
   game.inputHelper.shootTouch.hitArea = new PIXI.Rectangle(width / 2, 0,
                                                            width / 2, height);
+
+  for (var i = 0; i < game.bulletManager.bulletPool.length; i++) {
+    Bullet tempBullet = game.bulletManager.bulletPool[i];
+    tempBullet.view.width = tempBullet.origSize.x * modulo;
+    tempBullet.view.height = tempBullet.origSize.y * modulo;
+  }
 
   renderer.resize(width, height);
 }
