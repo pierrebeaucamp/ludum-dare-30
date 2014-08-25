@@ -1,7 +1,6 @@
 library ld30;
 
 import 'dart:html';
-import 'dart:web_audio';
 import 'package:play_pixi/pixi.dart' as PIXI;
 
 part "dart/bulletManager.dart";
@@ -48,13 +47,17 @@ void main() {
   renderer.view.style.display = "none";
   document.body.append(renderer.view);
 
-  AudioContext audioContext = new AudioContext();
-
+  Element progressBar = querySelector("#progressBar");
   int loaded = 0;
-  loader.onProgress = (_) => loaded++;
+  loader.onProgress = (_) {
+    loaded++;
+    progressBar.value = loaded;
+    progressBar.max = loader.assetURLs.length;
+  };
 
   loader.onComplete = () {
     _initialized = true;
+    progressBar.style.display = "none";
     currentState = states["playing"];
     resize();
     renderer.view.style.display = "block";

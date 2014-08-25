@@ -3,14 +3,13 @@ part of ld30;
 class NPCManager {
   Game game;
   num drag = 0.4;
-  List<Enemy> enemyPool = new List<Enemy>();
   List<Enemy> allyPool = new List<Enemy>();
 
   NPCManager(this.game) {}
 
   void update() {
     for (int i = 0; i < allyPool.length; i++) {
-      allyPool[i].ally ? allyPool[i].updateAlly() : allyPool[i].updateEnemy();
+      if (allyPool[i].ally) allyPool[i].updateAlly();
       for (int j = 0; j < allyPool.length; j++) {
         if (i != j && !allyPool[j].dead) {
           if (game.collisionManager.spritesColliding(allyPool[i], allyPool[j]))
@@ -114,9 +113,5 @@ class Enemy {
 
   void updateAlly() {
     game.cutsceneManager.updateNPC(this);
-  }
-
-  void updateEnemy () {
-
   }
 }

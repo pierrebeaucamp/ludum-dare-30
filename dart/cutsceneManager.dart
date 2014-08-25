@@ -33,14 +33,13 @@ class CutsceneManager {
     if (playing) {
       switch (scene) {
         case 0:
-          Element body = querySelector("canvas");
+          Element body = querySelector("body");
           body.onTouchStart.first.then((e) {
             body.requestFullscreen();
             playing = false;
             game.cutsceneManager.play(game.cutsceneManager.cutscenes["intro"]);
           });
           body.onMouseDown.first.then((e) {
-            //body.requestFullscreen();
             playing = false;
             game.cutsceneManager.play(game.cutsceneManager.cutscenes["intro"]);
           });

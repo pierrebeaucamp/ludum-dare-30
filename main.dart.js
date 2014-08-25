@@ -2267,7 +2267,7 @@ var $$ = {};
     onProgress$1: function($receiver, arg0) {
       return this.onProgress.call$1(arg0);
     },
-    onComplete$0: function($receiver) {
+    onComplete$0: function() {
       return this.onComplete.call$0();
     },
     _getDataType$1: function(str) {
@@ -2334,7 +2334,7 @@ var $$ = {};
         t2.content = t1;
         t1.dispatchEvent$1(0, t2);
         if (t1.onComplete != null)
-          t1.onComplete$0(0);
+          t1.onComplete$0();
       }
     }, "call$1", null, 2, 0, null, 61, "call"],
     $isFunction: true
@@ -11574,7 +11574,7 @@ var $$ = {};
     "%": "HTMLBodyElement"
   },
   ButtonElement: {
-    "^": "HtmlElement;name=,value=",
+    "^": "HtmlElement;name=,value%",
     "%": "HTMLButtonElement"
   },
   CanvasElement: {
@@ -11763,7 +11763,7 @@ var $$ = {};
     removeEventListener$3: function(receiver, type, listener, useCapture) {
       return receiver.removeEventListener(type, H.convertDartClosureToJS(listener, 1), useCapture);
     },
-    "%": "AudioContext|MediaStream|OfflineAudioContext|webkitAudioContext;EventTarget"
+    "%": "MediaStream;EventTarget"
   },
   FieldSetElement: {
     "^": "HtmlElement;name=",
@@ -11835,7 +11835,7 @@ var $$ = {};
     "%": "HTMLImageElement"
   },
   InputElement: {
-    "^": "HtmlElement;height%,name=,src},value=,width%",
+    "^": "HtmlElement;height%,max},name=,src},value%,width%",
     $isElement: true,
     $isNode: true,
     "%": "HTMLInputElement"
@@ -11852,7 +11852,7 @@ var $$ = {};
     "%": "HTMLKeygenElement"
   },
   LIElement: {
-    "^": "HtmlElement;value=",
+    "^": "HtmlElement;value%",
     "%": "HTMLLIElement"
   },
   LinkElement: {
@@ -11879,7 +11879,7 @@ var $$ = {};
     "%": "HTMLMetaElement"
   },
   MeterElement: {
-    "^": "HtmlElement;value=",
+    "^": "HtmlElement;max},value%",
     "%": "HTMLMeterElement"
   },
   MouseEvent: {
@@ -11952,19 +11952,19 @@ var $$ = {};
     "%": "HTMLObjectElement"
   },
   OptionElement: {
-    "^": "HtmlElement;value=",
+    "^": "HtmlElement;value%",
     "%": "HTMLOptionElement"
   },
   OutputElement: {
-    "^": "HtmlElement;name=,value=",
+    "^": "HtmlElement;name=,value%",
     "%": "HTMLOutputElement"
   },
   ParamElement: {
-    "^": "HtmlElement;name=,value=",
+    "^": "HtmlElement;name=,value%",
     "%": "HTMLParamElement"
   },
   ProgressElement: {
-    "^": "HtmlElement;value=",
+    "^": "HtmlElement;max},value%",
     "%": "HTMLProgressElement"
   },
   ProgressEvent: {
@@ -11976,7 +11976,7 @@ var $$ = {};
     "%": "HTMLScriptElement"
   },
   SelectElement: {
-    "^": "HtmlElement;length=,name=,value=",
+    "^": "HtmlElement;length=,name=,value%",
     "%": "HTMLSelectElement"
   },
   SourceElement: {
@@ -11992,7 +11992,7 @@ var $$ = {};
     "%": "HTMLTemplateElement"
   },
   TextAreaElement: {
-    "^": "HtmlElement;name=,value=",
+    "^": "HtmlElement;name=,value%",
     "%": "HTMLTextAreaElement"
   },
   TextMetrics: {
@@ -13699,7 +13699,7 @@ var $$ = {};
 ["ld30", "../../../../Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/main.dart", , M, {
   "^": "",
   animate: [function(time) {
-    var passedTime, t1, t2, t3, t4, currFacingRight, t5, t6, t7, t8, t9, t10;
+    var passedTime, t1, t2, t3, t4, currFacingRight, t5, t6, t7, t8, t9;
     $.currentTime = time;
     passedTime = J.$sub$n(time, $.lastTime);
     $.dt = J.$mul$ns(J.$gt$n(passedTime, 100) ? 100 : passedTime, 0.06);
@@ -13732,107 +13732,102 @@ var $$ = {};
     t3 = $.get$states().$index(0, "paused");
     if (t2 == null ? t3 != null : t2 !== t3) {
       t2 = t1.player;
-      if (t2.dead)
-        ;
-      else {
-        currFacingRight = t2.facingRight;
-        t3 = t2.view;
-        t4 = t2.realAnimationSpeed;
-        t5 = $.dt;
-        if (typeof t5 !== "number")
-          return H.iae(t5);
-        t3.animationSpeed = t4 * t5;
-        t5 = t2.game;
-        t5.collisionManager.floorCheck$1(t2);
-        if (!t2.grounded) {
-          t3 = t2.acceleration;
-          t3.y = J.$add$ns(t3.y, t5.gravity);
-        } else {
-          t3 = t2.acceleration;
-          t3.y = 0;
-        }
-        if (J.$gt$n(t3.x, 0)) {
-          t4 = t3.x;
-          t6 = t2.drag;
-          if (J.$gt$n(t4, t6))
-            t3.x = J.$sub$n(t3.x, t6);
-          else
-            t3.x = 0;
-        }
-        if (J.$lt$n(t3.x, 0)) {
-          t4 = t3.x;
-          t6 = t2.drag;
-          if (J.$lt$n(t4, -t6))
-            t3.x = J.$add$ns(t3.x, t6);
-          else
-            t3.x = 0;
-        }
-        if (t5.inputHelper._keys.containsKey$1(68) || t5.inputHelper._keys.containsKey$1(39)) {
-          if (J.$le$n(t3.x, t2.maxSpeed))
-            t3.x = J.$add$ns(t3.x, 2);
-          t2.facingRight = true;
-        }
-        if (t5.inputHelper._keys.containsKey$1(65) || t5.inputHelper._keys.containsKey$1(37)) {
-          if (J.$ge$n(t3.x, -t2.maxSpeed))
-            t3.x = J.$sub$n(t3.x, 2);
-          t2.facingRight = false;
-        }
-        t4 = t2.position;
-        t4.y = J.$add$ns(t4.y, t3.y);
-        t2.view.position.x = J.$mul$ns(t4.x, $.modulo);
-        t2.view.position.y = J.$mul$ns(t4.y, $.modulo);
-        t6 = J.$add$ns(t2.view.position.x, J.$mul$ns(t3.x, $.modulo));
-        t7 = $.width;
-        if (typeof t7 !== "number")
-          return t7.$div();
-        if (J.$gt$n(t6, t7 / 2)) {
-          t6 = t5.camera;
-          t7 = J.$sub$n(t6.x, J.$mul$ns(t3.x, $.modulo));
-          t8 = t5.world.map;
-          if (J.$lt$n(t7, J.$mul$ns(t8.scale.x, t8.texture.get$frame().width)))
-            t6.x = J.$sub$n(t6.x, J.$mul$ns(t3.x, $.modulo));
-        } else if (J.$lt$n(J.$add$ns(t2.view.position.x, J.$mul$ns(t3.x, $.modulo)), 50 * $.modulo)) {
-          t6 = t5.camera;
-          if (J.$lt$n(J.$sub$n(t6.x, J.$mul$ns(t3.x, $.modulo)), 0))
-            t6.x = J.$sub$n(t6.x, J.$mul$ns(t3.x, $.modulo));
-        } else
-          t4.x = J.$add$ns(t4.x, t3.x);
-        if (currFacingRight !== t2.facingRight) {
-          t6 = t2.view.scale;
-          t6.x = J.$mul$ns(t6.x, -1);
-          t6 = t2.view;
-          t7 = J.$div$n(J.$mul$ns(t6.scale.x, t6.texture.get$frame().width), 2);
-          t8 = t2.view;
-          t9 = t8.scale.x;
-          t10 = J.getInterceptor$ns(t9);
-          t6.position.x = t7 - J.$div$n(t10.$mul(t9, t10.$mul(t9, t8.texture.get$frame().width)), 2);
-        }
-        if (J.$eq(t3.x, 0))
-          t2.view.textures = t2.idleFrames;
-        else
-          t2.view.textures = t2.runningFrames;
-        if (t5.inputHelper._keys.containsKey$1(32) || t5.inputHelper._keys.containsKey$1(13) || t5.inputHelper._keys.containsKey$1(90) || t5.inputHelper._keys.containsKey$1(88) || t5.inputHelper._keys.containsKey$1(96) || t5.inputHelper._keys.containsKey$1(16) || t5.inputHelper._keys.containsKey$1(190))
-          if (J.$gt$n(J.$sub$n($.currentTime, t2.lastBulletShot), t2.shotDelay)) {
-            t3 = t5.bulletManager;
-            t5 = t2.view.position;
-            t6 = t5.x;
-            t5 = t5.y;
-            t7 = t2.facingRight ? 1 : -1;
-            t8 = t3.bulletPool;
-            t3 = t3.game;
-            t9 = new M.Point(null, null);
-            t9.x = 0;
-            t9.y = 0;
-            t10 = new M.Point(null, null);
-            t10.x = 0;
-            t10.y = 0;
-            t10 = new M.Bullet(false, false, true, 2.5, t3, t9, t10, M.Sprite_fromFrame("fireball.png"));
-            t10.Bullet$4(t3, t6, t5, t7);
-            t8.push(t10);
-            t2.lastBulletShot = $.currentTime;
-          }
-        P.print(J.$add$ns(J.$add$ns(J.toString$0(t4.y), ", "), J.toString$0(t4.x)));
+      currFacingRight = t2.facingRight;
+      t3 = t2.view;
+      t4 = t2.realAnimationSpeed;
+      t5 = $.dt;
+      if (typeof t5 !== "number")
+        return H.iae(t5);
+      t3.animationSpeed = t4 * t5;
+      t5 = t2.game;
+      t5.collisionManager.floorCheck$1(t2);
+      if (!t2.grounded) {
+        t3 = t2.acceleration;
+        t3.y = J.$add$ns(t3.y, t5.gravity);
+      } else {
+        t3 = t2.acceleration;
+        t3.y = 0;
       }
+      if (J.$gt$n(t3.x, 0)) {
+        t4 = t3.x;
+        t6 = t2.drag;
+        if (J.$gt$n(t4, t6))
+          t3.x = J.$sub$n(t3.x, t6);
+        else
+          t3.x = 0;
+      }
+      if (J.$lt$n(t3.x, 0)) {
+        t4 = t3.x;
+        t6 = t2.drag;
+        if (J.$lt$n(t4, -t6))
+          t3.x = J.$add$ns(t3.x, t6);
+        else
+          t3.x = 0;
+      }
+      if (t5.inputHelper._keys.containsKey$1(68) || t5.inputHelper._keys.containsKey$1(39)) {
+        if (J.$le$n(t3.x, t2.maxSpeed))
+          t3.x = J.$add$ns(t3.x, 2);
+        t2.facingRight = true;
+      }
+      if (t5.inputHelper._keys.containsKey$1(65) || t5.inputHelper._keys.containsKey$1(37)) {
+        if (J.$ge$n(t3.x, -t2.maxSpeed))
+          t3.x = J.$sub$n(t3.x, 2);
+        t2.facingRight = false;
+      }
+      t4 = t2.position;
+      t4.y = J.$add$ns(t4.y, t3.y);
+      t2.view.position.x = J.$mul$ns(t4.x, $.modulo);
+      t2.view.position.y = J.$mul$ns(t4.y, $.modulo);
+      t6 = J.$add$ns(t2.view.position.x, J.$mul$ns(t3.x, $.modulo));
+      t7 = $.width;
+      if (typeof t7 !== "number")
+        return t7.$div();
+      if (J.$gt$n(t6, t7 / 2)) {
+        t4 = t5.camera;
+        t6 = J.$sub$n(t4.x, J.$mul$ns(t3.x, $.modulo));
+        t7 = t5.world.map;
+        if (J.$lt$n(t6, J.$mul$ns(t7.scale.x, t7.texture.get$frame().width)))
+          t4.x = J.$sub$n(t4.x, J.$mul$ns(t3.x, $.modulo));
+      } else if (J.$lt$n(J.$add$ns(t2.view.position.x, J.$mul$ns(t3.x, $.modulo)), 50 * $.modulo)) {
+        t4 = t5.camera;
+        if (J.$lt$n(J.$sub$n(t4.x, J.$mul$ns(t3.x, $.modulo)), 0))
+          t4.x = J.$sub$n(t4.x, J.$mul$ns(t3.x, $.modulo));
+      } else
+        t4.x = J.$add$ns(t4.x, t3.x);
+      if (currFacingRight !== t2.facingRight) {
+        t4 = t2.view.scale;
+        t4.x = J.$mul$ns(t4.x, -1);
+        t4 = t2.view;
+        t6 = J.$div$n(J.$mul$ns(t4.scale.x, t4.texture.get$frame().width), 2);
+        t7 = t2.view;
+        t8 = t7.scale.x;
+        t9 = J.getInterceptor$ns(t8);
+        t4.position.x = t6 - J.$div$n(t9.$mul(t8, t9.$mul(t8, t7.texture.get$frame().width)), 2);
+      }
+      if (J.$eq(t3.x, 0))
+        t2.view.textures = t2.idleFrames;
+      else
+        t2.view.textures = t2.runningFrames;
+      if (t5.inputHelper._keys.containsKey$1(32) || t5.inputHelper._keys.containsKey$1(13) || t5.inputHelper._keys.containsKey$1(90) || t5.inputHelper._keys.containsKey$1(88) || t5.inputHelper._keys.containsKey$1(96) || t5.inputHelper._keys.containsKey$1(16) || t5.inputHelper._keys.containsKey$1(190))
+        if (J.$gt$n(J.$sub$n($.currentTime, t2.lastBulletShot), t2.shotDelay)) {
+          t3 = t5.bulletManager;
+          t4 = t2.view.position;
+          t5 = t4.x;
+          t4 = t4.y;
+          t6 = t2.facingRight ? 1 : -1;
+          t7 = t3.bulletPool;
+          t3 = t3.game;
+          t8 = new M.Point(null, null);
+          t8.x = 0;
+          t8.y = 0;
+          t9 = new M.Point(null, null);
+          t9.x = 0;
+          t9.y = 0;
+          t9 = new M.Bullet(false, false, true, 2.5, t3, t8, t9, M.Sprite_fromFrame("fireball.png"));
+          t9.Bullet$4(t3, t5, t4, t6);
+          t7.push(t9);
+          t2.lastBulletShot = $.currentTime;
+        }
       t1.npcManager.update$0();
       t1.bulletManager.update$0();
       t1.npcManager.update$0();
@@ -13843,15 +13838,15 @@ var $$ = {};
     $.lastTime = $.currentTime;
   }, "call$1", "animate$closure", 2, 0, 36, 37],
   main: [function() {
-    var t1, t2;
+    var t1, progressBar, t2;
     t1 = {};
     J.set$display$x($.get$renderer().view.style, "none");
     document.body.appendChild($.get$renderer().view);
-    new (window.AudioContext || window.webkitAudioContext)();
+    progressBar = document.querySelector("#progressBar");
     t1.loaded_0 = 0;
     t2 = $.get$loader();
-    t2.onProgress = new M.main_closure(t1);
-    t2.onComplete = new M.main_closure0();
+    t2.onProgress = new M.main_closure(t1, progressBar);
+    t2.onComplete = new M.main_closure0(progressBar);
     t2 = J.get$onLoad$x($.get$worldColl());
     H.setRuntimeTypeInfo(new W._EventStreamSubscription(0, t2._target, t2._eventType, W._wrapZone(new M.main_closure1()), t2._useCapture), [H.getTypeArgumentByIndex(t2, 0)])._tryResume$0();
     t2 = H.setRuntimeTypeInfo(new W._EventStream(window, C.EventStreamProvider_resize._eventType, false), [null]);
@@ -14114,7 +14109,7 @@ var $$ = {};
       if (this.playing)
         switch (this.scene) {
           case 0:
-            body = document.querySelector("canvas");
+            body = document.querySelector("body");
             body.toString;
             t1 = H.setRuntimeTypeInfo(new W._ElementEventStreamImpl(body, C.EventStreamProvider_touchstart._eventType, false), [null]);
             t1.get$first(t1).then$1(new M.CutsceneManager_update_closure(this, body));
@@ -14227,7 +14222,7 @@ var $$ = {};
       this.collisionManager = new M.CollisionManager(this);
       this.cutsceneManager = new M.CutsceneManager(false, false, 0, null, this, P.LinkedHashMap_LinkedHashMap$_literal(["tap", 0, "intro", 1, "battlefield", 2, "mercy", 3, "sourrounded", 4, "final_choice", 5, "outro_good", 6, "outro_bad", 7, "Dying", 8], null, null));
       this.inputHelper = M.InputHelper$(this);
-      this.npcManager = new M.NPCManager(this, 0.4, H.setRuntimeTypeInfo([], [M.Enemy]), H.setRuntimeTypeInfo([], [M.Enemy]));
+      this.npcManager = new M.NPCManager(this, 0.4, H.setRuntimeTypeInfo([], [M.Enemy]));
       t1 = new M.Point(null, null);
       t1.x = 0;
       t1.y = 0;
@@ -14422,7 +14417,7 @@ var $$ = {};
     $isFunction: true
   },
   NPCManager: {
-    "^": "Object;game,drag,enemyPool,allyPool",
+    "^": "Object;game,drag,allyPool",
     update$0: function() {
       var t1, t2, i, t3, t4, j, t5, t6, currFacingRight, t7, t8;
       for (t1 = this.allyPool, t2 = this.game, i = 0; i < t1.length; ++i) {
@@ -14669,16 +14664,22 @@ var $$ = {};
     }
   },
   main_closure: {
-    "^": "Closure:33;box_0",
+    "^": "Closure:33;box_0,progressBar_1",
     call$1: function(_) {
-      return this.box_0.loaded_0++;
+      var t1, t2;
+      t1 = this.progressBar_1;
+      t2 = J.getInterceptor$x(t1);
+      t2.set$value(t1, ++this.box_0.loaded_0);
+      $.get$loader().assetURLs;
+      t2.set$max(t1, 1);
     },
     $isFunction: true
   },
   main_closure0: {
-    "^": "Closure:62;",
+    "^": "Closure:62;progressBar_2",
     call$0: function() {
       $._initialized = true;
+      J.set$display$x(this.progressBar_2.style, "none");
       $.currentState = $.get$states().$index(0, "playing");
       M.resize(null);
       J.set$display$x($.get$renderer().view.style, "block");
@@ -14760,22 +14761,22 @@ W.CanvasElement.$isCanvasElement = true;
 W.CanvasElement.$isElement = true;
 W.CanvasElement.$isNode = true;
 W.CanvasElement.$isObject = true;
+P.Iterable.$isIterable = true;
+P.Iterable.$isObject = true;
+P.Stream.$isStream = true;
+P.Stream.$isObject = true;
 P._EventSink.$is_EventSink = true;
 P._EventSink.$isObject = true;
 P.Future.$isFuture = true;
 P.Future.$isObject = true;
 P._DelayedEvent.$is_DelayedEvent = true;
 P._DelayedEvent.$isObject = true;
-P.StreamSubscription.$isStreamSubscription = true;
-P.StreamSubscription.$isObject = true;
-P.Iterable.$isIterable = true;
-P.Iterable.$isObject = true;
-P.Stream.$isStream = true;
-P.Stream.$isObject = true;
 P.DateTime.$isDateTime = true;
 P.DateTime.$isComparable = true;
 P.DateTime.$asComparable = [null];
 P.DateTime.$isObject = true;
+P.StreamSubscription.$isStreamSubscription = true;
+P.StreamSubscription.$isObject = true;
 P.UniformLocation.$isUniformLocation = true;
 P.UniformLocation.$isObject = true;
 P.Float32List.$isFloat32List = true;

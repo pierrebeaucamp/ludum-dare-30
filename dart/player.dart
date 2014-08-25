@@ -53,7 +53,7 @@ class Player {
     currentState = states["paused"];
   }
 
-  void update() => dead ? updateDead() : updateAlive();
+  void update() => updateAlive();
 
   void updateAlive() {
     bool currFacingRight = facingRight;
@@ -115,9 +115,5 @@ class Player {
         lastBulletShot = currentTime;
       }
     }
-    print(position.y.toString() + ", " + position.x.toString());
-  }
-
-  void updateDead() {
   }
 }
