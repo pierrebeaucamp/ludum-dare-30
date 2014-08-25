@@ -15,7 +15,7 @@ class Player {
   PIXI.Point position = new PIXI.Point();
   PIXI.Point acceleration = new PIXI.Point();
   List<PIXI.Texture> dyingFrames = [];
-  List<PIXI.Texture> idleFrames = [];
+  List<PIXI.Texture> idleFrames = [PIXI.Texture.fromFrame("Panda_0.png")];
   List<PIXI.Texture> runningFrames = [
     PIXI.Texture.fromFrame("Panda_1.png"),
     PIXI.Texture.fromFrame("Panda_2.png"),
@@ -24,7 +24,7 @@ class Player {
   PIXI.MovieClip view;
 
   Player(this.game) {
-    view = new PIXI.MovieClip(runningFrames);
+    view = new PIXI.MovieClip(idleFrames);
     view.animationSpeed = 0.23;
     view.anchor.x = 0.5;
     view.anchor.y = 0.5;
@@ -84,6 +84,9 @@ class Player {
       view.position.x = view.width / 2 - view.scale.x * view.width / 2;
     }
 
+    if (acceleration.x == 0) view.textures = idleFrames;
+    else view.textures = runningFrames;
+
     if (game.inputHelper.isPressed(KeyCode.SPACE) ||
         game.inputHelper.isPressed(KeyCode.ENTER) ||
         game.inputHelper.isPressed(KeyCode.Z) ||
@@ -100,6 +103,5 @@ class Player {
   }
 
   void updateDead() {
-
   }
 }

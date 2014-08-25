@@ -2,7 +2,7 @@
 
 "Panda_0.png":
 {
-	"frame": {"x":2,"y":682,"w":24,"h":24},
+	"frame": {"x":2,"y":344,"w":24,"h":24},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
@@ -11,7 +11,7 @@
 },
 "Panda_1.png":
 {
-	"frame": {"x":28,"y":682,"w":24,"h":24},
+	"frame": {"x":28,"y":344,"w":24,"h":24},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
@@ -20,7 +20,7 @@
 },
 "Panda_2.png":
 {
-	"frame": {"x":54,"y":682,"w":24,"h":24},
+	"frame": {"x":54,"y":344,"w":24,"h":24},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
@@ -29,7 +29,7 @@
 },
 "Panda_3.png":
 {
-	"frame": {"x":80,"y":682,"w":24,"h":24},
+	"frame": {"x":80,"y":344,"w":24,"h":24},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
@@ -38,20 +38,20 @@
 },
 "Panda_4.png":
 {
-	"frame": {"x":106,"y":682,"w":24,"h":24},
+	"frame": {"x":106,"y":344,"w":24,"h":24},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
 	"sourceSize": {"w":24,"h":24},
 	"pivot": {"x":0.5,"y":0.5}
 },
-"world-collision.png":
+"fireball.png":
 {
-	"frame": {"x":2,"y":344,"w":4088,"h":336},
+	"frame": {"x":132,"y":344,"w":18,"h":18},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":4088,"h":336},
-	"sourceSize": {"w":4088,"h":336},
+	"spriteSourceSize": {"x":0,"y":0,"w":18,"h":18},
+	"sourceSize": {"w":18,"h":18},
 	"pivot": {"x":0.5,"y":0.5}
 },
 "world.png":
@@ -68,8 +68,8 @@
 	"version": "1.0",
 	"image": "sprites.png",
 	"format": "RGBA8888",
-	"size": {"w":4096,"h":708},
+	"size": {"w":4096,"h":370},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:4c0b56329c0acbcce3fcb32be10c915c:72c1d6b1268085994646325ce20f1545:1eabdf11f75e3a4fe3147baf7b5be24b$"
+	"smartupdate": "$TexturePacker:SmartUpdate:ff3cd2f77e3b2684d50aa6bc5d917ac8:0111b468eabce3a9eb2da27e4bd48576:1eabdf11f75e3a4fe3147baf7b5be24b$"
 }
 }

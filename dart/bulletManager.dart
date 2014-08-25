@@ -21,15 +21,15 @@ class BulletManager {
 class Bullet {
   bool destroy = false;
   bool grounded = false;
-  int bulletSpeed = 9;
+  num bulletSpeed = 2.5;
   Game game;
   PIXI.Point acceleration = new PIXI.Point();
   PIXI.Point origSize = new PIXI.Point();
-  PIXI.Sprite view = PIXI.Sprite.fromFrame("Panda_0.png");
+  PIXI.Sprite view = PIXI.Sprite.fromFrame("fireball.png");
 
   Bullet(this.game, num x, y, d) {
-    acceleration.x = d * bulletSpeed;
-    acceleration.y = -bulletSpeed;
+    acceleration.x = d * bulletSpeed * modulo;
+    acceleration.y = -bulletSpeed * modulo;
     origSize.x = view.width;
     origSize.y = view.height;
     view.width = origSize.x * modulo;
@@ -42,7 +42,7 @@ class Bullet {
   void update() {
     game.collisionManager.floorCheck(this);
     if (grounded) die();
-    acceleration.y += game.gravity * bulletSpeed / 3;
+    acceleration.y += game.gravity * (bulletSpeed / 3) * modulo ;
     view.position.x += acceleration.x;
     view.position.y += acceleration.y;
   }
