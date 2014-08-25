@@ -6,7 +6,7 @@ class Player {
   bool grounded = false;
   num drag = 0.6;
   num lastBulletShot = 0;
-  num maxSpeed = 1;
+  num maxSpeed = 0.8;
   int originalHeight, originalWidth;
   int shotDelay = 200;
   num realAnimationSpeed = 0.1;
@@ -14,13 +14,20 @@ class Player {
   Game game;
   PIXI.Point position = new PIXI.Point();
   PIXI.Point acceleration = new PIXI.Point();
-  List<PIXI.Texture> dyingFrames = [];
-  List<PIXI.Texture> idleFrames = [PIXI.Texture.fromFrame("Panda_0.png")];
+  List<PIXI.Texture> dyingFrames = [
+    PIXI.Texture.fromFrame("Death/1.png"),
+    PIXI.Texture.fromFrame("Death/2.png"),
+    PIXI.Texture.fromFrame("Death/3.png"),
+    PIXI.Texture.fromFrame("Death/4.png"),
+    PIXI.Texture.fromFrame("Death/5.png")];
+  List<PIXI.Texture> idleFrames = [
+    PIXI.Texture.fromFrame("Side View/Standing_Down.png"),
+    PIXI.Texture.fromFrame("Side View/Standing_Up.png")];
   List<PIXI.Texture> runningFrames = [
-    PIXI.Texture.fromFrame("Panda_1.png"),
-    PIXI.Texture.fromFrame("Panda_2.png"),
-    PIXI.Texture.fromFrame("Panda_3.png"),
-    PIXI.Texture.fromFrame("Panda_4.png")];
+    PIXI.Texture.fromFrame("Side View/1.png"),
+    PIXI.Texture.fromFrame("Side View/2.png"),
+    PIXI.Texture.fromFrame("Side View/3.png"),
+    PIXI.Texture.fromFrame("Side View/4.png")];
   PIXI.MovieClip view;
 
   Player(this.game) {
@@ -32,9 +39,18 @@ class Player {
 
     originalHeight = view.height;
     originalWidth = view.width;
-    position.y = 50;
+    position.y = -10;
     position.x = 150;
+    view.play();
     game.game.addChild(view);
+  }
+
+  void die() {
+    game.startText = new PIXI.Text("You died", new PIXI.TextStyle()
+                                        ..font = "bold italic 35px Arvo"
+                                        ..fill = "white");
+    game.container.addChild(game.startText);
+    currentState = states["paused"];
   }
 
   void update() => dead ? updateDead() : updateAlive();
@@ -43,6 +59,7 @@ class Player {
     bool currFacingRight = facingRight;
     view.animationSpeed = realAnimationSpeed * dt;
     game.collisionManager.floorCheck(this);
+
     !grounded ? acceleration.y += game.gravity : acceleration.y = 0;
 
     if (acceleration.x > 0) {
@@ -75,9 +92,7 @@ class Player {
     } else if (view.position.x + acceleration.x * modulo < 50 * modulo) {
       if (game.camera.x - acceleration.x * modulo < 0)
         game.camera.x -= acceleration.x * modulo;
-    } else {
-      position.x += acceleration.x;
-    }
+    } else position.x += acceleration.x;
 
     if (currFacingRight != facingRight) {
       view.scale.x *= -1;
@@ -100,6 +115,7 @@ class Player {
         lastBulletShot = currentTime;
       }
     }
+    print(position.y.toString() + ", " + position.x.toString());
   }
 
   void updateDead() {

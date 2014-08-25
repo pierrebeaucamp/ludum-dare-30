@@ -21,6 +21,7 @@ class BulletManager {
 class Bullet {
   bool destroy = false;
   bool grounded = false;
+  bool virgin = true;
   num bulletSpeed = 2.5;
   Game game;
   PIXI.Point acceleration = new PIXI.Point();
@@ -34,13 +35,28 @@ class Bullet {
     origSize.y = view.height;
     view.width = origSize.x * modulo;
     view.height = origSize.y * modulo;
-    view.position.x = x;
-    view.position.y = y - view.height / 2;
+    view.position.x = x + d * view.width / 2 - view.width / 2;
+    view.position.y = y - view.height / 2 - 5 * modulo;
     game.game.addChild(view);
   }
 
   void update() {
     game.collisionManager.floorCheck(this);
+    if (game.collisionManager.spritesColliding(this, game.player)) {
+        if (!virgin) {
+          //grounded = true;
+          game.player.die();
+        }
+    } else virgin = false;
+
+    for (var i = 0; i < game.npcManager.allyPool.length; i++) {
+      Enemy tempEnemy = game.npcManager.allyPool[i];
+      if (game.collisionManager.spritesColliding(this, tempEnemy)) {
+        grounded = true;
+        tempEnemy.die();
+      }
+    }
+
     if (grounded) die();
     acceleration.y += game.gravity * (bulletSpeed / 3) * modulo ;
     view.position.x += acceleration.x;

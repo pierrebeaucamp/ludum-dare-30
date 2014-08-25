@@ -3,11 +3,17 @@ part of ld30;
 class Game {
   BulletManager bulletManager;
   CollisionManager collisionManager;
+  CutsceneManager cutsceneManager;
   InputHelper inputHelper;
   NPCManager npcManager;
   Player player;
   World world;
   PIXI.Point camera = new PIXI.Point();
+  PIXI.Text startText = new PIXI.Text("Click or touch to start! \n" +
+                                      "This Game is unfinished",
+                                      new PIXI.TextStyle()
+                                      ..font = "bold italic 35px Arvo"
+                                      ..fill = "white");
   PIXI.DisplayObjectContainer container = new PIXI.DisplayObjectContainer();
   PIXI.DisplayObjectContainer game = new PIXI.DisplayObjectContainer();
   PIXI.DisplayObjectContainer gameFront = new PIXI.DisplayObjectContainer();
@@ -17,27 +23,33 @@ class Game {
   Game() {
     bulletManager = new BulletManager(this);
     collisionManager = new CollisionManager(this);
+    cutsceneManager = new CutsceneManager(this);
     inputHelper = new InputHelper(this);
     npcManager = new NPCManager(this);
     player = new Player(this);
     world = new World(this);
 
-    player.view.play();
-    player.view.visible = true;
-
     container.hitArea = stage.hitArea;
     container.interactive = true;
     container.addChild(gameFront);
     container.addChild(game);
+    container.addChild(startText);
     stage.addChild(container);
   }
 
   void update() {
+    startText.x = width / 2 - startText.width / 2;
+    startText.y = height / 2 - startText.height / 2;
+
+    cutsceneManager.update();
+    world.update();
     if (currentState != states["paused"]) {
-      bulletManager.update();
       player.update();
-      world.update();
       npcManager.update();
+      bulletManager.update();
+      npcManager.update();
+    } else {
+
     }
     inputHelper.update();
   }
