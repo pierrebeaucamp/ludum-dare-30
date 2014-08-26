@@ -1150,7 +1150,7 @@ var $$ = {};
       t3.y = 0;
       t4 = new P.DateTime(Date.now(), false);
       t4.DateTime$_now$0();
-      this.interactionManager = new M.InteractionManager(this, new M.InteractionData(t1, null, null), t2, t3, true, [], [], null, null, t4, null, "inherit", false);
+      this.interactionManager = new M.InteractionManager(this, new M.InteractionData(t1, null, null), t2, t3, true, [], [], null, null, t4, P.LinkedHashMap_LinkedHashMap(null, null, null, P.String, null), null, "inherit", false);
       this.backgroundColor = backgroundColor;
       this.backgroundColorSplit = M.hex2rgb(backgroundColor);
       hex = J.toRadixString$1$n(this.backgroundColor, 16);
@@ -1807,7 +1807,7 @@ var $$ = {};
     "^": "Object;global<,target',originalEvent"
   },
   InteractionManager: {
-    "^": "Object;stage,mouse,touchs,tempPoint,mouseoverEnabled,pool,interactiveItems,interactionDOMElement,target',last,dirty,currentCursorStyle,mouseOut",
+    "^": "Object;stage,mouse,touchs,tempPoint,mouseoverEnabled,pool,interactiveItems,interactionDOMElement,target',last,subscriptions,dirty,currentCursorStyle,mouseOut",
     collectInteractiveSprite$2: function(displayObject, iParent) {
       var children, t1, i, child;
       children = J.get$children$x(displayObject);
@@ -1824,7 +1824,7 @@ var $$ = {};
       }
     },
     setTarget$1: function(target) {
-      var t1, t2;
+      var t1, t2, t3, t4;
       this.target = target;
       if (this.interactionDOMElement == null) {
         t1 = target.view;
@@ -1834,8 +1834,15 @@ var $$ = {};
         t2.addEventListener$3(t1, "mousemove", this.get$onMouseMove(this), true);
         t2.addEventListener$3(t1, "mousedown", this.get$onMouseDown(this), true);
         t2.addEventListener$3(t1, "mouseout", this.get$onMouseOut(this), true);
-        t2.addEventListener$3(t1, "touchstart", this.get$onTouchStart(this), true);
-        t2.addEventListener$3(t1, "touchend", this.get$onTouchEnd(this), true);
+        t3 = this.subscriptions;
+        t4 = H.setRuntimeTypeInfo(new W._ElementEventStreamImpl(t1, C.EventStreamProvider_touchstart._eventType, false), [null]);
+        t4 = H.setRuntimeTypeInfo(new W._EventStreamSubscription(0, t4._target, t4._eventType, W._wrapZone(this.get$onTouchStart(this)), t4._useCapture), [H.getTypeArgumentByIndex(t4, 0)]);
+        t4._tryResume$0();
+        t3.$indexSet(0, "onTouchStart", t4);
+        t4 = H.setRuntimeTypeInfo(new W._ElementEventStreamImpl(t1, C.EventStreamProvider_touchend._eventType, false), [null]);
+        t4 = H.setRuntimeTypeInfo(new W._EventStreamSubscription(0, t4._target, t4._eventType, W._wrapZone(this.get$onTouchEnd(this)), t4._useCapture), [H.getTypeArgumentByIndex(t4, 0)]);
+        t4._tryResume$0();
+        t3.$indexSet(0, "onTouchEnd", t4);
         t2.addEventListener$3(t1, "touchmove", this.get$onTouchMove(this), true);
         C.Window_methods.addEventListener$3(window, "mouseup", this.get$onMouseUp(this), true);
       }
@@ -1847,8 +1854,9 @@ var $$ = {};
       J.removeEventListener$3$x(t1, "mousemove", this.get$onMouseMove(this), true);
       J.removeEventListener$3$x(this.interactionDOMElement, "mousedown", this.get$onMouseDown(this), true);
       J.removeEventListener$3$x(this.interactionDOMElement, "mouseout", this.get$onMouseOut(this), true);
-      J.removeEventListener$3$x(this.interactionDOMElement, "touchstart", this.get$onTouchStart(this), true);
-      J.removeEventListener$3$x(this.interactionDOMElement, "touchend", this.get$onTouchEnd(this), true);
+      t1 = this.subscriptions;
+      t1.$index(0, "onTouchStart").cancel$0();
+      t1.$index(0, "onTouchEnd").cancel$0();
       J.removeEventListener$3$x(this.interactionDOMElement, "touchmove", this.get$onTouchMove(this), true);
       this.interactionDOMElement = null;
       C.Window_methods.removeEventListener$3(window, "mouseup", this.get$onMouseUp(this), true);
@@ -5997,6 +6005,21 @@ var $$ = {};
   },
   TimerImpl: {
     "^": "Object;_once,_inEventLoop,_handle",
+    cancel$0: function() {
+      if ($.get$globalThis().setTimeout != null) {
+        if (this._inEventLoop)
+          throw H.wrapException(P.UnsupportedError$("Timer in event loop cannot be canceled."));
+        if (this._handle == null)
+          return;
+        H.leaveJsAsync();
+        if (this._once)
+          $.get$globalThis().clearTimeout(this._handle);
+        else
+          $.get$globalThis().clearInterval(this._handle);
+        this._handle = null;
+      } else
+        throw H.wrapException(P.UnsupportedError$("Canceling a timer."));
+    },
     TimerImpl$2: function(milliseconds, callback) {
       var t1, t2;
       if (milliseconds === 0)
@@ -13696,7 +13719,7 @@ var $$ = {};
     $isFunction: true
   }
 }],
-["ld30", "../../../../Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/main.dart", , M, {
+["ld30", "main.dart", , M, {
   "^": "",
   animate: [function(time) {
     var passedTime, t1, t2, t3, t4, t5, t6, currFacingRight, t7, t8, t9;
@@ -14444,7 +14467,7 @@ var $$ = {};
               break;
             case 1:
               t3.acceleration.x = -t4.game.player.maxSpeed;
-              if (J.$ge$n(J.$sub$n($.currentTime, t4.friendlyCounter), 6000)) {
+              if (J.$ge$n(J.$sub$n($.currentTime, t4.friendlyCounter), 5000)) {
                 M.resize(null);
                 t4.friendlyCounter = J.$mul$ns($.currentTime, 100000);
               }
@@ -14763,10 +14786,10 @@ M.Enemy.$isObject = true;
 W.KeyboardEvent.$isKeyboardEvent = true;
 W.KeyboardEvent.$isObject = true;
 P.RenderingContext.$isObject = true;
+W.TouchEvent.$isObject = true;
 P.Symbol.$isSymbol = true;
 P.Symbol.$isObject = true;
 P.ContextEvent.$isObject = true;
-W.TouchEvent.$isObject = true;
 W.MouseEvent.$isMouseEvent = true;
 W.MouseEvent.$isObject = true;
 W.ProgressEvent.$isObject = true;
@@ -15318,6 +15341,7 @@ C.EventStreamProvider_load0 = new W.EventStreamProvider("load");
 C.EventStreamProvider_mousedown = new W.EventStreamProvider("mousedown");
 C.EventStreamProvider_readystatechange = new W.EventStreamProvider("readystatechange");
 C.EventStreamProvider_resize = new W.EventStreamProvider("resize");
+C.EventStreamProvider_touchend = new W.EventStreamProvider("touchend");
 C.EventStreamProvider_touchstart = new W.EventStreamProvider("touchstart");
 C.EventStreamProvider_webglcontextlost = new W.EventStreamProvider("webglcontextlost");
 C.EventStreamProvider_webglcontextrestored = new W.EventStreamProvider("webglcontextrestored");
@@ -20218,7 +20242,7 @@ function dart_precompiled($collectedClasses) {
   InteractionData.prototype.set$target = function(receiver, v) {
     return this.target = v;
   };
-  function InteractionManager(stage, mouse, touchs, tempPoint, mouseoverEnabled, pool, interactiveItems, interactionDOMElement, target, last, dirty, currentCursorStyle, mouseOut) {
+  function InteractionManager(stage, mouse, touchs, tempPoint, mouseoverEnabled, pool, interactiveItems, interactionDOMElement, target, last, subscriptions, dirty, currentCursorStyle, mouseOut) {
     this.stage = stage;
     this.mouse = mouse;
     this.touchs = touchs;
@@ -20229,6 +20253,7 @@ function dart_precompiled($collectedClasses) {
     this.interactionDOMElement = interactionDOMElement;
     this.target = target;
     this.last = last;
+    this.subscriptions = subscriptions;
     this.dirty = dirty;
     this.currentCursorStyle = currentCursorStyle;
     this.mouseOut = mouseOut;

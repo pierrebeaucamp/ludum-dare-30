@@ -17,6 +17,8 @@ class InteractionManager {
   Renderer target = null;
   DateTime last = new DateTime.now();
 
+  Map<String, StreamSubscription> subscriptions = new Map<String, StreamSubscription>();
+
   bool dirty;
 
   String currentCursorStyle = 'inherit';
@@ -92,8 +94,8 @@ class InteractionManager {
     domElement.addEventListener('mouseout', this.onMouseOut, true);
 
     // aint no multi touch just yet!
-    domElement.addEventListener('touchstart', this.onTouchStart, true);
-    domElement.addEventListener('touchend', this.onTouchEnd, true);
+    this.subscriptions['onTouchStart'] = domElement.onTouchStart.listen(this.onTouchStart);
+    this.subscriptions['onTouchEnd'] = domElement.onTouchEnd.listen(this.onTouchEnd);
     domElement.addEventListener('touchmove', this.onTouchMove, true);
 
     window.addEventListener('mouseup', this.onMouseUp, true);
@@ -110,8 +112,8 @@ class InteractionManager {
     this.interactionDOMElement.removeEventListener('mouseout', this.onMouseOut, true);
 
     // aint no multi touch just yet!
-    this.interactionDOMElement.removeEventListener('touchstart', this.onTouchStart, true);
-    this.interactionDOMElement.removeEventListener('touchend', this.onTouchEnd, true);
+    this.subscriptions['onTouchStart'].cancel();
+    this.subscriptions['onTouchEnd'].cancel();
     this.interactionDOMElement.removeEventListener('touchmove', this.onTouchMove, true);
 
     this.interactionDOMElement = null;

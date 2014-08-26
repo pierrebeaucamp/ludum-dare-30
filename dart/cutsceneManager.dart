@@ -87,7 +87,7 @@ class CutsceneManager {
 
       case 1: // intro
         enemy.acceleration.x = -game.player.maxSpeed;
-        if (currentTime - friendlyCounter >= 6000) {
+        if (currentTime - friendlyCounter >= 5000) {
            resize();
            friendlyCounter = currentTime * 100000;
         }
