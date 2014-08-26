@@ -11153,7 +11153,7 @@ var $$ = {};
       return this._duration > other.get$_duration();
     },
     $le: function(_, other) {
-      return C.JSNumber_methods.$le(this._duration, other.get$_duration());
+      return this._duration <= other.get$_duration();
     },
     $ge: function(_, other) {
       return C.JSNumber_methods.$ge(this._duration, other.get$_duration());
@@ -11835,7 +11835,7 @@ var $$ = {};
     "%": "HTMLImageElement"
   },
   InputElement: {
-    "^": "HtmlElement;height%,max},name=,src},value%,width%",
+    "^": "HtmlElement;height%,name=,src},value%,width%",
     $isElement: true,
     $isNode: true,
     "%": "HTMLInputElement"
@@ -11879,7 +11879,7 @@ var $$ = {};
     "%": "HTMLMetaElement"
   },
   MeterElement: {
-    "^": "HtmlElement;max},value%",
+    "^": "HtmlElement;value%",
     "%": "HTMLMeterElement"
   },
   MouseEvent: {
@@ -11964,7 +11964,7 @@ var $$ = {};
     "%": "HTMLParamElement"
   },
   ProgressElement: {
-    "^": "HtmlElement;max},value%",
+    "^": "HtmlElement;value%",
     "%": "HTMLProgressElement"
   },
   ProgressEvent: {
@@ -13699,7 +13699,7 @@ var $$ = {};
 ["ld30", "../../../../Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/main.dart", , M, {
   "^": "",
   animate: [function(time) {
-    var passedTime, t1, t2, t3, t4, currFacingRight, t5, t6, t7, t8, t9;
+    var passedTime, t1, t2, t3, t4, t5, t6, currFacingRight, t7, t8, t9;
     $.currentTime = time;
     passedTime = J.$sub$n(time, $.lastTime);
     $.dt = J.$mul$ns(J.$gt$n(passedTime, 100) ? 100 : passedTime, 0.06);
@@ -13717,17 +13717,26 @@ var $$ = {};
     t1.cutsceneManager.update$0();
     t2 = t1.world;
     t3 = t2.map;
-    t2 = t2.game.camera;
-    t3 = t3.position;
-    t3.x = J.$sub$n(t2.x, 10);
-    t4 = $.height;
-    if (typeof t4 !== "number")
-      return t4.$le();
-    t2 = t2.y;
-    if (t4 <= 224)
-      t3.y = J.$add$ns(t2, 5);
-    else
-      t3.y = J.$add$ns(t2, 10);
+    t4 = t2.game.camera;
+    t5 = t3.position;
+    t5.x = J.$sub$n(t4.x, 10);
+    t6 = $.height;
+    if (typeof t6 !== "number")
+      return t6.$le();
+    t4 = t4.y;
+    if (t6 <= 224) {
+      t4 = J.$add$ns(t4, 5);
+      t5.y = t4;
+    } else {
+      t4 = J.$add$ns(t4, 10);
+      t5.y = t4;
+    }
+    t2 = t2.foreground;
+    t6 = t2.position;
+    t6.x = t5.x;
+    t6.y = t4;
+    t2.set$width(0, J.$mul$ns(t3.scale.x, t3.texture.get$frame().width));
+    t2.set$height(0, J.$mul$ns(t3.scale.y, t3.texture.get$frame().height));
     t2 = $.currentState;
     t3 = $.get$states().$index(0, "paused");
     if (t2 == null ? t3 != null : t2 !== t3) {
@@ -13977,19 +13986,21 @@ var $$ = {};
   Bullet: {
     "^": "Object;destroy,grounded?,virgin,bulletSpeed,game,acceleration>,origSize,view>",
     update$0: function() {
-      var t1, t2, t3, i, tempEnemy;
+      var t1, t2, t3, t4, i, tempEnemy;
       t1 = this.game;
       t1.collisionManager.floorCheck$1(this);
       if (t1.collisionManager.spritesColliding$2(this, t1.player)) {
         if (!this.virgin) {
-          t2 = t1.player.game;
-          t3 = M.TextStyle$("left", "black", "bold 20pt Arial", "black", 0, 16777215);
-          t3.font = "bold italic 35px Arvo";
-          t3.fill = "white";
-          t3 = M.Text$("You died", t3);
-          t2.startText = t3;
-          t2 = t2.container;
-          t2.addChildAt$2(t3, t2.children.length);
+          t2 = t1.player;
+          t3 = t2.game;
+          t4 = M.TextStyle$("left", "black", "bold 20pt Arial", "black", 0, 16777215);
+          t4.font = "bold 35px Arial";
+          t4.fill = "white";
+          t4 = M.Text$("You died", t4);
+          t3.startText = t4;
+          t3 = t3.container;
+          t3.addChildAt$2(t4, t3.children.length);
+          t2.view.textures = t2.dyingFrames;
           $.currentState = $.get$states().$index(0, "paused");
         }
       } else
@@ -13999,11 +14010,12 @@ var $$ = {};
         if (t1.collisionManager.spritesColliding$2(this, tempEnemy)) {
           this.grounded = true;
           tempEnemy.dead = true;
+          tempEnemy.view.textures = tempEnemy.dyingFrames;
         }
       }
       if (this.grounded) {
         this.destroy = true;
-        t2 = t1.game;
+        t2 = t1.gameFront;
         t3 = t2.children;
         t2.removeChildAt$1(H.Lists_indexOf(t3, this.view, 0, t3.length));
       }
@@ -14037,7 +14049,7 @@ var $$ = {};
       t3.position.x = J.$sub$n(t2, J.$div$n(J.$mul$ns(t1.scale.x, t1.texture.get$frame().width), 2));
       t1 = this.view;
       t1.position.y = J.$sub$n(J.$sub$n(y, J.$div$n(J.$mul$ns(t1.scale.y, t1.texture.get$frame().height), 2)), 5 * $.modulo);
-      t1 = this.game.game;
+      t1 = this.game.gameFront;
       t1.addChildAt$2(this.view, t1.children.length);
     },
     $isBullet: true
@@ -14048,20 +14060,14 @@ var $$ = {};
       var t1, t2, t3;
       t1 = J.abs$0$n(J.$sub$n(a.get$view(a).position.x, b.get$view(b).position.x));
       t2 = a.get$view(a);
-      t2 = t2.get$width(t2);
+      t2 = J.abs$0$n(t2.get$width(t2));
       t3 = b.get$view(b);
-      t3 = J.$add$ns(t2, J.$mul$ns(t3.scale.x, t3.texture.get$frame().width));
-      if (typeof t3 !== "number")
-        return H.iae(t3);
-      if (t1 * 2.5 < t3) {
+      if (t1 * 2.5 < t2 + J.abs$0$n(J.$mul$ns(t3.scale.x, t3.texture.get$frame().width))) {
         t1 = J.abs$0$n(J.$sub$n(a.get$view(a).position.y, b.get$view(b).position.y));
         t2 = a.get$view(a);
-        t2 = t2.get$height(t2);
+        t2 = J.abs$0$n(t2.get$height(t2));
         t3 = b.get$view(b);
-        t3 = J.$add$ns(t2, J.$mul$ns(t3.scale.y, t3.texture.get$frame().height));
-        if (typeof t3 !== "number")
-          return H.iae(t3);
-        t3 = t1 * 2.5 < t3;
+        t3 = t1 * 2.5 < t2 + J.abs$0$n(J.$mul$ns(t3.scale.y, t3.texture.get$frame().height));
         t1 = t3;
       } else
         t1 = false;
@@ -14105,7 +14111,7 @@ var $$ = {};
       }
     },
     update$0: function() {
-      var body, t1, t2, t3, t4, t5, i, t6, texture, texture0, texture1, texture2, texture3;
+      var body, t1, t2, t3, t4, t5, i, t6, texture, texture0, texture1, texture2, texture3, texture4, texture5, texture6;
       if (this.playing)
         switch (this.scene) {
           case 0:
@@ -14137,12 +14143,12 @@ var $$ = {};
             t2 = t1.camera;
             if (J.$gt$n(t2.y, this.startCamera.y))
               t2.y = J.$sub$n(t2.y, 5);
-            if (J.$eq(t2.y, this.startCamera.y)) {
+            if (J.$le$n(t2.y, this.startCamera.y)) {
               t1.player.view.visible = true;
               $.currentState = $.get$states().$index(0, "playing");
-              for (i = 1; i <= 5; ++i) {
+              for (i = 1; i <= 15; ++i) {
                 t2 = t1.npcManager;
-                t3 = J.$add$ns(t1.player.position.x, 25 * i);
+                t3 = J.$sub$n(J.$sub$n(t1.world.originalWidth, 200), 25 * i);
                 t4 = t2.allyPool;
                 t2 = t2.game;
                 t5 = new M.Point(null, null);
@@ -14151,22 +14157,31 @@ var $$ = {};
                 t6 = new M.Point(null, null);
                 t6.x = 0;
                 t6.y = 0;
-                texture = $.get$TextureCache().$index(0, "Panda_0.png");
+                texture = $.get$TextureCache().$index(0, "Death1.png");
                 if (texture == null)
-                  H.throwExpression(P.Exception_Exception("The frameId \"Panda_0.png\" does not exist in the texture cache"));
-                texture0 = $.get$TextureCache().$index(0, "Panda_1.png");
+                  H.throwExpression(P.Exception_Exception("The frameId \"Death1.png\" does not exist in the texture cache"));
+                texture0 = $.get$TextureCache().$index(0, "Death2.png");
                 if (texture0 == null)
-                  H.throwExpression(P.Exception_Exception("The frameId \"Panda_1.png\" does not exist in the texture cache"));
-                texture1 = $.get$TextureCache().$index(0, "Panda_2.png");
+                  H.throwExpression(P.Exception_Exception("The frameId \"Death2.png\" does not exist in the texture cache"));
+                texture1 = $.get$TextureCache().$index(0, "death3.png");
                 if (texture1 == null)
-                  H.throwExpression(P.Exception_Exception("The frameId \"Panda_2.png\" does not exist in the texture cache"));
-                texture2 = $.get$TextureCache().$index(0, "Panda_3.png");
+                  H.throwExpression(P.Exception_Exception("The frameId \"death3.png\" does not exist in the texture cache"));
+                texture2 = $.get$TextureCache().$index(0, "Side View/W1.png");
                 if (texture2 == null)
-                  H.throwExpression(P.Exception_Exception("The frameId \"Panda_3.png\" does not exist in the texture cache"));
-                texture3 = $.get$TextureCache().$index(0, "Panda_4.png");
+                  H.throwExpression(P.Exception_Exception("The frameId \"Side View/W1.png\" does not exist in the texture cache"));
+                texture3 = $.get$TextureCache().$index(0, "Side View/W1.png");
                 if (texture3 == null)
-                  H.throwExpression(P.Exception_Exception("The frameId \"Panda_4.png\" does not exist in the texture cache"));
-                t5 = new M.Enemy(true, true, false, false, null, null, t2, t5, t6, [], [texture], [texture0, texture1, texture2, texture3], null);
+                  H.throwExpression(P.Exception_Exception("The frameId \"Side View/W1.png\" does not exist in the texture cache"));
+                texture4 = $.get$TextureCache().$index(0, "Side View/W2.png");
+                if (texture4 == null)
+                  H.throwExpression(P.Exception_Exception("The frameId \"Side View/W2.png\" does not exist in the texture cache"));
+                texture5 = $.get$TextureCache().$index(0, "Side View/W3.png");
+                if (texture5 == null)
+                  H.throwExpression(P.Exception_Exception("The frameId \"Side View/W3.png\" does not exist in the texture cache"));
+                texture6 = $.get$TextureCache().$index(0, "Side View/W4.png");
+                if (texture6 == null)
+                  H.throwExpression(P.Exception_Exception("The frameId \"Side View/W4.png\" does not exist in the texture cache"));
+                t5 = new M.Enemy(true, false, false, false, 0, null, null, t2, t5, t6, [texture, texture0, texture1], [texture2], [texture3, texture4, texture5, texture6], null);
                 t5.Enemy$3(t2, t3, true);
                 t4.push(t5);
               }
@@ -14222,7 +14237,6 @@ var $$ = {};
       this.collisionManager = new M.CollisionManager(this);
       this.cutsceneManager = new M.CutsceneManager(false, false, 0, null, this, P.LinkedHashMap_LinkedHashMap$_literal(["tap", 0, "intro", 1, "battlefield", 2, "mercy", 3, "sourrounded", 4, "final_choice", 5, "outro_good", 6, "outro_bad", 7, "Dying", 8], null, null));
       this.inputHelper = M.InputHelper$(this);
-      this.npcManager = new M.NPCManager(this, 0.4, H.setRuntimeTypeInfo([], [M.Enemy]));
       t1 = new M.Point(null, null);
       t1.x = 0;
       t1.y = 0;
@@ -14232,9 +14246,10 @@ var $$ = {};
       t2 = new M.Player(false, true, false, 0.6, 0, 0.8, null, null, 200, 0.1, this, t1, t2, [M.Texture_fromFrame("Death/1.png"), M.Texture_fromFrame("Death/2.png"), M.Texture_fromFrame("Death/3.png"), M.Texture_fromFrame("Death/4.png"), M.Texture_fromFrame("Death/5.png")], [M.Texture_fromFrame("Side View/Standing_Down.png"), M.Texture_fromFrame("Side View/Standing_Up.png")], [M.Texture_fromFrame("Side View/1.png"), M.Texture_fromFrame("Side View/2.png"), M.Texture_fromFrame("Side View/3.png"), M.Texture_fromFrame("Side View/4.png")], null);
       t2.Player$1(this);
       this.player = t2;
-      t2 = new M.World(this, null, null, M.Sprite_fromFrame("world.png"), null, null);
+      t2 = new M.World(this, null, null, M.Sprite_fromFrame("world.png"), M.Sprite_fromFrame("worldFrontView.png"), null, null);
       t2.World$1(this);
       this.world = t2;
+      this.npcManager = new M.NPCManager(this, 0.4, H.setRuntimeTypeInfo([], [M.Enemy]));
       t2 = this.container;
       t2.hitArea = $.get$stage().PIXI$Stage$hitArea;
       t2.set$interactive(true);
@@ -14419,7 +14434,7 @@ var $$ = {};
   NPCManager: {
     "^": "Object;game,drag,allyPool",
     update$0: function() {
-      var t1, t2, i, t3, t4, j, t5, t6, currFacingRight, t7, t8;
+      var t1, t2, i, t3, t4, j, currFacingRight, t5, t6, t7, t8;
       for (t1 = this.allyPool, t2 = this.game, i = 0; i < t1.length; ++i) {
         t3 = t1[i];
         if (t3.ally) {
@@ -14428,7 +14443,7 @@ var $$ = {};
             case 0:
               break;
             case 1:
-              t3.acceleration.x = t4.game.player.maxSpeed;
+              t3.acceleration.x = -t4.game.player.maxSpeed;
               break;
             case 2:
               break;
@@ -14462,6 +14477,7 @@ var $$ = {};
         if (i >= t3)
           return H.ioore(t1, i);
         t3 = t1[i];
+        currFacingRight = t3.facingRight;
         if (t3.dead) {
           t4 = t3.acceleration;
           t4.x = 0;
@@ -14474,7 +14490,6 @@ var $$ = {};
           else
             t6.textures = t3.runningFrames;
         }
-        currFacingRight = t3.facingRight;
         t5 = t3.view;
         t6 = t3.game;
         t7 = t6.player.realAnimationSpeed;
@@ -14493,9 +14508,10 @@ var $$ = {};
           else
             t4.x = 0;
         if (J.$lt$n(t4.x, 0))
-          if (J.$lt$n(t4.x, -t6.npcManager.drag))
+          if (J.$lt$n(t4.x, -t6.npcManager.drag)) {
             t4.x = J.$add$ns(t4.x, t6.npcManager.drag);
-          else
+            t3.facingRight = false;
+          } else
             t4.x = 0;
         t5 = t3.position;
         t5.y = J.$add$ns(t5.y, t4.y);
@@ -14547,16 +14563,24 @@ var $$ = {};
           t4.x = J.$mul$ns(t4.x, -1);
           t4 = t3.view;
           t5 = J.$div$n(J.$mul$ns(t4.scale.x, t4.texture.get$frame().width), 2);
-          t3 = t3.view;
-          t6 = t3.scale.x;
-          t7 = J.getInterceptor$ns(t6);
-          t4.position.x = t5 - J.$div$n(t7.$mul(t6, t7.$mul(t6, t3.texture.get$frame().width)), 2);
+          t6 = t3.view;
+          t7 = t6.scale.x;
+          t8 = J.getInterceptor$ns(t7);
+          t4.position.x = t5 - J.$div$n(t8.$mul(t7, t8.$mul(t7, t6.texture.get$frame().width)), 2);
+        }
+        if (t3.dead) {
+          t4 = t3.deadFrame;
+          t5 = t3.view;
+          if (t4 < 2 / t5.animationSpeed)
+            t3.deadFrame = t4 + 1;
+          else
+            t5._playing = false;
         }
       }
     }
   },
   Enemy: {
-    "^": "Object;ally,facingRight,grounded?,dead,originalHeight,originalWidth,game,position>,acceleration>,dyingFrames,idleFrames,runningFrames,view>",
+    "^": "Object;ally,facingRight,grounded?,dead,deadFrame,originalHeight,originalWidth,game,position>,acceleration>,dyingFrames,idleFrames,runningFrames,view>",
     Enemy$3: function(game, x, ally) {
       var t1, t2, t3, t4, t5, t6, t7;
       t1 = this.idleFrames;
@@ -14597,7 +14621,7 @@ var $$ = {};
       t4.x = x;
       t4 = this.view;
       t4._playing = true;
-      t3 = t3.game;
+      t3 = t3.gameFront;
       t3.addChildAt$2(t4, t3.children.length);
     }
   },
@@ -14644,12 +14668,12 @@ var $$ = {};
     }
   },
   World: {
-    "^": "Object;game,originalHeight,originalWidth,map,myCanvas,CanvasCtx",
+    "^": "Object;game,originalHeight,originalWidth,map,foreground,myCanvas,CanvasCtx",
     map$1: function($receiver, arg0) {
       return this.map.call$1(arg0);
     },
     World$1: function(game) {
-      var t1, t2;
+      var t1, t2, t3;
       t1 = this.map;
       this.originalHeight = J.$mul$ns(t1.scale.y, t1.texture.get$frame().height);
       this.originalWidth = J.$mul$ns(t1.scale.x, t1.texture.get$frame().width);
@@ -14659,19 +14683,17 @@ var $$ = {};
       t2 = J.get$context2D$x(t2);
       this.CanvasCtx = t2;
       t2.drawImage($.get$worldColl(), 0, 0, J.$mul$ns(t1.scale.x, t1.texture.get$frame().width), J.$mul$ns(t1.scale.y, t1.texture.get$frame().height));
-      t2 = this.game.gameFront;
-      t2.addChildAt$2(t1, t2.children.length);
+      t2 = this.game;
+      t3 = t2.gameFront;
+      t3.addChildAt$2(t1, t3.children.length);
+      t2 = t2.game;
+      t2.addChildAt$2(this.foreground, t2.children.length);
     }
   },
   main_closure: {
     "^": "Closure:33;box_0,progressBar_1",
     call$1: function(_) {
-      var t1, t2;
-      t1 = this.progressBar_1;
-      t2 = J.getInterceptor$x(t1);
-      t2.set$value(t1, ++this.box_0.loaded_0);
-      $.get$loader().assetURLs;
-      t2.set$max(t1, 1);
+      J.set$value$x(this.progressBar_1, ++this.box_0.loaded_0);
     },
     $isFunction: true
   },
@@ -15199,6 +15221,9 @@ J.set$strokeStyle$x = function(receiver, value) {
 J.set$textBaseline$x = function(receiver, value) {
   return J.getInterceptor$x(receiver).set$textBaseline(receiver, value);
 };
+J.set$value$x = function(receiver, value) {
+  return J.getInterceptor$x(receiver).set$value(receiver, value);
+};
 J.set$width$x = function(receiver, value) {
   return J.getInterceptor$x(receiver).set$width(receiver, value);
 };
@@ -15657,9 +15682,9 @@ Isolate.$lazy($, "game", "game", "get$game", function() {
   t1.x = 0;
   t1.y = 0;
   t2 = M.TextStyle$("left", "black", "bold 20pt Arial", "black", 0, 16777215);
-  t2.font = "bold italic 35px Arvo";
+  t2.font = "bold 35px Arial";
   t2.fill = "white";
-  t2 = M.Text$("Click or touch to start! \nThis Game is unfinished", t2);
+  t2 = M.Text$("This Game is unfinished\n\n Click or touch to start!", t2);
   t3 = new M.Point(null, null);
   t3.x = 0;
   t3.y = 0;

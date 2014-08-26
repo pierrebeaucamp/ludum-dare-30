@@ -47,9 +47,10 @@ class Player {
 
   void die() {
     game.startText = new PIXI.Text("You died", new PIXI.TextStyle()
-                                        ..font = "bold italic 35px Arvo"
+                                        ..font = "bold 35px Arial"
                                         ..fill = "white");
     game.container.addChild(game.startText);
+    view.textures = dyingFrames;
     currentState = states["paused"];
   }
 

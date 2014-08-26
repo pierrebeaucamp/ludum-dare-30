@@ -6,9 +6,9 @@ class CollisionManager {
 
   bool spritesColliding(var a, b) {
     return ((a.view.position.x - b.view.position.x).abs() * 2.5 <
-           (a.view.width + b.view.width)) &&
+           (a.view.width.abs() + b.view.width.abs())) &&
            ((a.view.position.y - b.view.position.y).abs() * 2.5 <
-           (a.view.height + b.view.height));
+           (a.view.height.abs() + b.view.height.abs()));
   }
 
   bool enemyInFrame(var a, b) {

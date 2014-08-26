@@ -52,7 +52,6 @@ void main() {
   loader.onProgress = (_) {
     loaded++;
     progressBar.value = loaded;
-    progressBar.max = loader.assetURLs.length;
   };
 
   loader.onComplete = () {

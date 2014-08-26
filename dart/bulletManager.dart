@@ -37,7 +37,7 @@ class Bullet {
     view.height = origSize.y * modulo;
     view.position.x = x + d * view.width / 2 - view.width / 2;
     view.position.y = y - view.height / 2 - 5 * modulo;
-    game.game.addChild(view);
+    game.gameFront.addChild(view);
   }
 
   void update() {
@@ -65,6 +65,6 @@ class Bullet {
 
   void die() {
     destroy = true;
-    game.game.removeChild(view);
+    game.gameFront.removeChild(view);
   }
 }

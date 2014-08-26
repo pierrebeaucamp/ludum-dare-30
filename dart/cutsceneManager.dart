@@ -48,11 +48,11 @@ class CutsceneManager {
         case 1: // intro
           if (!initialized) intro_init();
           if (game.camera.y > startCamera.y) game.camera.y -= 5;
-          if (game.camera.y == startCamera.y) {
+          if (game.camera.y <= startCamera.y) {
             game.player.view.visible = true;
             currentState = states["playing"];
-            for (var i = 1; i <= 5; i++) {
-              game.npcManager.spawnAlly(game.player.position.x + 25 * i);
+            for (var i = 1; i <= 15; i++) {
+              game.npcManager.spawnAlly(game.world.originalWidth -200 - 25 * i);
             }
             playing = false;
           }
@@ -85,7 +85,7 @@ class CutsceneManager {
 
       case 1: // intro
         //if ((enemy.view.position.x - game.camera.x) / modulo < 600)
-            enemy.acceleration.x = game.player.maxSpeed;
+            enemy.acceleration.x = -game.player.maxSpeed;
         break;
 
       case 2: // battlefield

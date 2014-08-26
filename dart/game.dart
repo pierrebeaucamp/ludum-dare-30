@@ -9,10 +9,10 @@ class Game {
   Player player;
   World world;
   PIXI.Point camera = new PIXI.Point();
-  PIXI.Text startText = new PIXI.Text("Click or touch to start! \n" +
-                                      "This Game is unfinished",
+  PIXI.Text startText = new PIXI.Text("This Game is unfinished\n\n" +
+                                      " Click or touch to start!",
                                       new PIXI.TextStyle()
-                                      ..font = "bold italic 35px Arvo"
+                                      ..font = "bold 35px Arial"
                                       ..fill = "white");
   PIXI.DisplayObjectContainer container = new PIXI.DisplayObjectContainer();
   PIXI.DisplayObjectContainer game = new PIXI.DisplayObjectContainer();
@@ -25,9 +25,9 @@ class Game {
     collisionManager = new CollisionManager(this);
     cutsceneManager = new CutsceneManager(this);
     inputHelper = new InputHelper(this);
-    npcManager = new NPCManager(this);
     player = new Player(this);
     world = new World(this);
+    npcManager = new NPCManager(this);
 
     container.hitArea = stage.hitArea;
     container.interactive = true;
