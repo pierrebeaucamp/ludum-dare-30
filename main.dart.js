@@ -1150,7 +1150,9 @@ var $$ = {};
       t3.y = 0;
       t4 = new P.DateTime(Date.now(), false);
       t4.DateTime$_now$0();
-      this.interactionManager = new M.InteractionManager(this, new M.InteractionData(t1, null, null), t2, t3, true, [], [], null, null, t4, P.LinkedHashMap_LinkedHashMap(null, null, null, P.String, null), null, "inherit", false);
+      t4 = new M.InteractionManager(this, new M.InteractionData(t1, null, null), t2, t3, true, [], [], null, null, t4, null, "inherit", false, null);
+      t4.isCocoonJS = J.contains$1$asx(window.navigator.appVersion, "CocoonJS");
+      this.interactionManager = t4;
       this.backgroundColor = backgroundColor;
       this.backgroundColorSplit = M.hex2rgb(backgroundColor);
       hex = J.toRadixString$1$n(this.backgroundColor, 16);
@@ -1807,7 +1809,7 @@ var $$ = {};
     "^": "Object;global<,target',originalEvent"
   },
   InteractionManager: {
-    "^": "Object;stage,mouse,touchs,tempPoint,mouseoverEnabled,pool,interactiveItems,interactionDOMElement,target',last,subscriptions,dirty,currentCursorStyle,mouseOut",
+    "^": "Object;stage,mouse,touchs,tempPoint,mouseoverEnabled,pool,interactiveItems,interactionDOMElement,target',last,dirty,currentCursorStyle,mouseOut,isCocoonJS",
     collectInteractiveSprite$2: function(displayObject, iParent) {
       var children, t1, i, child;
       children = J.get$children$x(displayObject);
@@ -1824,7 +1826,7 @@ var $$ = {};
       }
     },
     setTarget$1: function(target) {
-      var t1, t2, t3, t4;
+      var t1, t2;
       this.target = target;
       if (this.interactionDOMElement == null) {
         t1 = target.view;
@@ -1834,15 +1836,8 @@ var $$ = {};
         t2.addEventListener$3(t1, "mousemove", this.get$onMouseMove(this), true);
         t2.addEventListener$3(t1, "mousedown", this.get$onMouseDown(this), true);
         t2.addEventListener$3(t1, "mouseout", this.get$onMouseOut(this), true);
-        t3 = this.subscriptions;
-        t4 = H.setRuntimeTypeInfo(new W._ElementEventStreamImpl(t1, C.EventStreamProvider_touchstart._eventType, false), [null]);
-        t4 = H.setRuntimeTypeInfo(new W._EventStreamSubscription(0, t4._target, t4._eventType, W._wrapZone(this.get$onTouchStart(this)), t4._useCapture), [H.getTypeArgumentByIndex(t4, 0)]);
-        t4._tryResume$0();
-        t3.$indexSet(0, "onTouchStart", t4);
-        t4 = H.setRuntimeTypeInfo(new W._ElementEventStreamImpl(t1, C.EventStreamProvider_touchend._eventType, false), [null]);
-        t4 = H.setRuntimeTypeInfo(new W._EventStreamSubscription(0, t4._target, t4._eventType, W._wrapZone(this.get$onTouchEnd(this)), t4._useCapture), [H.getTypeArgumentByIndex(t4, 0)]);
-        t4._tryResume$0();
-        t3.$indexSet(0, "onTouchEnd", t4);
+        t2.addEventListener$3(t1, "touchstart", this.get$onTouchStart(this), true);
+        t2.addEventListener$3(t1, "touchend", this.get$onTouchEnd(this), true);
         t2.addEventListener$3(t1, "touchmove", this.get$onTouchMove(this), true);
         C.Window_methods.addEventListener$3(window, "mouseup", this.get$onMouseUp(this), true);
       }
@@ -1854,9 +1849,8 @@ var $$ = {};
       J.removeEventListener$3$x(t1, "mousemove", this.get$onMouseMove(this), true);
       J.removeEventListener$3$x(this.interactionDOMElement, "mousedown", this.get$onMouseDown(this), true);
       J.removeEventListener$3$x(this.interactionDOMElement, "mouseout", this.get$onMouseOut(this), true);
-      t1 = this.subscriptions;
-      t1.$index(0, "onTouchStart").cancel$0();
-      t1.$index(0, "onTouchEnd").cancel$0();
+      J.removeEventListener$3$x(this.interactionDOMElement, "touchstart", this.get$onTouchStart(this), true);
+      J.removeEventListener$3$x(this.interactionDOMElement, "touchend", this.get$onTouchEnd(this), true);
       J.removeEventListener$3$x(this.interactionDOMElement, "touchmove", this.get$onTouchMove(this), true);
       this.interactionDOMElement = null;
       C.Window_methods.removeEventListener$3(window, "mouseup", this.get$onMouseUp(this), true);
@@ -2109,77 +2103,110 @@ var $$ = {};
       return false;
     },
     onTouchMove$1: [function(_, $event) {
-      var t1, changedTouches, i, touchEvent, t2, touchData, t3, rect, t4, j;
+      var t1, changedTouches, t2, i, touchEvent, t3, touchData, t4, rect, t5, t6, t7, j;
       if (this.dirty === true)
         this.rebuildInteractiveGraph$0();
-      t1 = [];
-      C.JSArray_methods.addAll$1(t1, J.map$1$ax(J.$index$asx(P.JsObject_JsObject$fromBrowserObject($event), "changedTouches"), P._convertToJS$closure()));
-      changedTouches = H.setRuntimeTypeInfo(new P.JsArray(t1), [null]);
-      for (t1 = this.touchs, i = 0; i < changedTouches.get$length(changedTouches); ++i) {
-        if (i === C.JSInt_methods.toInt$0(i))
-          if (i >= changedTouches.get$length(changedTouches))
-            H.throwExpression(P.RangeError$range(i, 0, changedTouches.get$length(changedTouches)));
-        touchEvent = P.JsObject_JsObject$fromBrowserObject(P.JsObject.prototype.$index.call(changedTouches, changedTouches, i));
-        t2 = J.getInterceptor$asx(touchEvent);
-        touchData = t1.$index(0, t2.$index(touchEvent, "identifier"));
-        touchData.originalEvent = $event;
-        t3 = window.navigator.appVersion;
-        t3.toString;
-        t3.length;
-        if (H.stringContainsUnchecked(t3, "CocoonJS", 0)) {
-          t3 = touchData.global;
-          t3.x = t2.$index(touchEvent, "clientX");
-          t3.y = t2.$index(touchEvent, "clientY");
+      if (this.isCocoonJS) {
+        t1 = [];
+        C.JSArray_methods.addAll$1(t1, J.map$1$ax(J.$index$asx(P.JsObject_JsObject$fromBrowserObject($event), "changedTouches"), P._convertToJS$closure()));
+        changedTouches = H.setRuntimeTypeInfo(new P.JsArray(t1), [null]);
+      } else
+        changedTouches = J.get$changedTouches$x($event);
+      for (t1 = J.getInterceptor$asx(changedTouches), t2 = this.touchs, i = 0; i < t1.get$length(changedTouches); ++i) {
+        if (this.isCocoonJS) {
+          touchEvent = P.JsObject_JsObject$fromBrowserObject(t1.$index(changedTouches, i));
+          t3 = J.getInterceptor$asx(touchEvent);
+          touchData = t2.$index(0, t3.$index(touchEvent, "identifier"));
+          touchData.originalEvent = $event;
+          t4 = touchData.global;
+          t4.x = t3.$index(touchEvent, "clientX");
+          t4.y = t3.$index(touchEvent, "clientY");
         } else {
           rect = this.interactionDOMElement.getBoundingClientRect();
-          t3 = touchData.global;
-          t4 = J.getInterceptor$x(rect);
-          t3.x = J.$mul$ns(J.$sub$n(t2.$index(touchEvent, "clientX"), t4.get$left(rect)), J.$div$n(J.get$width$x(this.target), t4.get$width(rect)));
-          t3.y = J.$mul$ns(J.$sub$n(t2.$index(touchEvent, "clientY"), t4.get$top(rect)), J.$div$n(J.get$height$x(this.target), t4.get$height(rect)));
+          touchEvent = t1.$index(changedTouches, i);
+          t3 = J.getInterceptor$x(touchEvent);
+          touchData = t2.$index(0, t3.get$identifier(touchEvent));
+          touchData.originalEvent = $event;
+          t4 = touchData.global;
+          t5 = t3.get$client(touchEvent);
+          t5 = t5.get$x(t5);
+          t6 = J.getInterceptor$x(rect);
+          t7 = t6.get$left(rect);
+          if (typeof t5 !== "number")
+            return t5.$sub();
+          if (typeof t7 !== "number")
+            return H.iae(t7);
+          t4.x = (t5 - t7) * J.$div$n(J.get$width$x(this.target), t6.get$width(rect));
+          t3 = t3.get$client(touchEvent);
+          t3 = t3.get$y(t3);
+          t7 = t6.get$top(rect);
+          if (typeof t3 !== "number")
+            return t3.$sub();
+          if (typeof t7 !== "number")
+            return H.iae(t7);
+          t4.y = (t3 - t7) * J.$div$n(J.get$height$x(this.target), t6.get$height(rect));
         }
-        for (j = 0; t2 = this.interactiveItems, j < t2.length; ++j)
-          t2[j].get$touchmove();
+        for (j = 0; t3 = this.interactiveItems, j < t3.length; ++j)
+          t3[j].get$touchmove();
       }
     }, "call$1", "get$onTouchMove", 2, 0, 17, 4],
     onTouchStart$1: [function(_, $event) {
-      var ev, t1, changedTouches, t2, i, touchEvent, touchData, t3, t4, t5, rect, $length, j, item;
+      var ev, t1, t2, changedTouches, t3, i, touchData, t4, t5, touchEvent, identifier, rect, t6, t7, t8, $length, j, item;
       if (this.dirty === true)
         this.rebuildInteractiveGraph$0();
-      P.print("PIXI touch started");
-      ev = P.JsObject_JsObject$fromBrowserObject($event);
-      J.preventDefault$0$x($event);
-      t1 = [];
-      C.JSArray_methods.addAll$1(t1, J.map$1$ax(J.$index$asx(ev, "changedTouches"), P._convertToJS$closure()));
-      changedTouches = H.setRuntimeTypeInfo(new P.JsArray(t1), [null]);
-      for (t1 = this.touchs, t2 = this.pool, i = 0; i < changedTouches.get$length(changedTouches); ++i) {
-        if (i === C.JSInt_methods.toInt$0(i))
-          if (i >= changedTouches.get$length(changedTouches))
-            H.throwExpression(P.RangeError$range(i, 0, changedTouches.get$length(changedTouches)));
-        touchEvent = P.JsObject_JsObject$fromBrowserObject(P.JsObject.prototype.$index.call(changedTouches, changedTouches, i));
-        touchData = t2.length > 0 ? t2.pop() : null;
+      if (this.isCocoonJS) {
+        ev = P.JsObject_JsObject$fromBrowserObject($event);
+        t1 = J.getInterceptor$asx(ev);
+        t2 = [];
+        C.JSArray_methods.addAll$1(t2, J.map$1$ax(t1.$index(ev, "changedTouches"), P._convertToJS$closure()));
+        changedTouches = H.setRuntimeTypeInfo(new P.JsArray(t2), [null]);
+        t1.$index(ev, "preventDefault").apply$2$thisArg([], ev);
+      } else {
+        t1 = J.getInterceptor$x($event);
+        changedTouches = t1.get$changedTouches($event);
+        t1.preventDefault$0($event);
+      }
+      for (t1 = J.getInterceptor$asx(changedTouches), t2 = this.touchs, t3 = this.pool, i = 0; i < t1.get$length(changedTouches); ++i) {
+        touchData = t3.length > 0 ? t3.pop() : null;
         if (touchData == null) {
-          t3 = new M.Point(null, null);
-          t3.x = 0;
-          t3.y = 0;
-          touchData = new M.InteractionData(t3, null, null);
+          t4 = new M.Point(null, null);
+          t4.x = 0;
+          t4.y = 0;
+          touchData = new M.InteractionData(t4, null, null);
         }
         touchData.originalEvent = $event;
-        t3 = J.getInterceptor$asx(touchEvent);
-        t1.$indexSet(0, t3.$index(touchEvent, "identifier"), touchData);
-        t4 = window.navigator.appVersion;
-        t4.toString;
-        t4.length;
-        t4 = H.stringContainsUnchecked(t4, "CocoonJS", 0);
+        t4 = this.isCocoonJS;
         t5 = touchData.global;
         if (t4) {
-          t5.x = t3.$index(touchEvent, "clientX");
-          t5.y = t3.$index(touchEvent, "clientY");
+          touchEvent = P.JsObject_JsObject$fromBrowserObject(t1.$index(changedTouches, i));
+          t4 = J.getInterceptor$asx(touchEvent);
+          identifier = t4.$index(touchEvent, "identifier");
+          t5.x = t4.$index(touchEvent, "clientX");
+          t5.y = t4.$index(touchEvent, "clientY");
         } else {
+          touchEvent = t1.$index(changedTouches, i);
+          t4 = J.getInterceptor$x(touchEvent);
+          identifier = t4.get$identifier(touchEvent);
           rect = this.interactionDOMElement.getBoundingClientRect();
-          t4 = J.getInterceptor$x(rect);
-          t5.x = J.$mul$ns(J.$sub$n(t3.$index(touchEvent, "clientX"), t4.get$left(rect)), J.$div$n(J.get$width$x(this.target), t4.get$width(rect)));
-          t5.y = J.$mul$ns(J.$sub$n(t3.$index(touchEvent, "clientY"), t4.get$top(rect)), J.$div$n(J.get$height$x(this.target), t4.get$height(rect)));
+          t6 = t4.get$client(touchEvent);
+          t6 = t6.get$x(t6);
+          t7 = J.getInterceptor$x(rect);
+          t8 = t7.get$left(rect);
+          if (typeof t6 !== "number")
+            return t6.$sub();
+          if (typeof t8 !== "number")
+            return H.iae(t8);
+          t5.x = (t6 - t8) * J.$div$n(J.get$width$x(this.target), t7.get$width(rect));
+          t4 = t4.get$client(touchEvent);
+          t4 = t4.get$y(t4);
+          t8 = t7.get$top(rect);
+          if (typeof t4 !== "number")
+            return t4.$sub();
+          if (typeof t8 !== "number")
+            return H.iae(t8);
+          t5.y = (t4 - t8) * J.$div$n(J.get$height$x(this.target), t7.get$height(rect));
         }
+        t2.$indexSet(0, identifier, touchData);
         $length = this.interactiveItems.length;
         for (j = 0; j < $length; ++j) {
           t4 = this.interactiveItems;
@@ -2198,7 +2225,7 @@ var $$ = {};
                 item.touchstart$1(touchData);
               item.set$__isDown(true);
               item.get$__touchData();
-              item.get$__touchData().$indexSet(0, t3.$index(touchEvent, "identifier"), touchData);
+              item.get$__touchData().$indexSet(0, identifier, touchData);
               if (!!J.getInterceptor(item).$isDisplayObjectContainer && !item.interactiveChildren)
                 break;
             }
@@ -2207,32 +2234,48 @@ var $$ = {};
       }
     }, "call$1", "get$onTouchStart", 2, 0, 17, 4],
     onTouchEnd$1: [function(_, $event) {
-      var t1, changedTouches, t2, i, touchEvent, t3, touchData, t4, rect, t5, $length, up, j, item;
+      var t1, changedTouches, t2, t3, i, touchEvent, t4, identifier, touchData, t5, rect, t6, t7, t8, $length, up, j, item;
       if (this.dirty === true)
         this.rebuildInteractiveGraph$0();
-      t1 = [];
-      C.JSArray_methods.addAll$1(t1, J.map$1$ax(J.$index$asx(P.JsObject_JsObject$fromBrowserObject($event), "changedTouches"), P._convertToJS$closure()));
-      changedTouches = H.setRuntimeTypeInfo(new P.JsArray(t1), [null]);
-      for (t1 = this.pool, t2 = this.touchs, i = 0; i < changedTouches.get$length(changedTouches); ++i) {
-        if (i === C.JSInt_methods.toInt$0(i))
-          if (i >= changedTouches.get$length(changedTouches))
-            H.throwExpression(P.RangeError$range(i, 0, changedTouches.get$length(changedTouches)));
-        touchEvent = P.JsObject_JsObject$fromBrowserObject(P.JsObject.prototype.$index.call(changedTouches, changedTouches, i));
-        t3 = J.getInterceptor$asx(touchEvent);
-        touchData = t2.$index(0, t3.$index(touchEvent, "identifier"));
-        t4 = window.navigator.appVersion;
-        t4.toString;
-        t4.length;
-        if (H.stringContainsUnchecked(t4, "CocoonJS", 0)) {
-          t4 = touchData.global;
-          t4.x = t3.$index(touchEvent, "clientX");
-          t4.y = t3.$index(touchEvent, "clientY");
+      if (this.isCocoonJS) {
+        t1 = [];
+        C.JSArray_methods.addAll$1(t1, J.map$1$ax(J.$index$asx(P.JsObject_JsObject$fromBrowserObject($event), "changedTouches"), P._convertToJS$closure()));
+        changedTouches = H.setRuntimeTypeInfo(new P.JsArray(t1), [null]);
+      } else
+        changedTouches = J.get$changedTouches$x($event);
+      for (t1 = J.getInterceptor$asx(changedTouches), t2 = this.pool, t3 = this.touchs, i = 0; i < t1.get$length(changedTouches); ++i) {
+        if (this.isCocoonJS) {
+          touchEvent = P.JsObject_JsObject$fromBrowserObject(t1.$index(changedTouches, i));
+          t4 = J.getInterceptor$asx(touchEvent);
+          identifier = t4.$index(touchEvent, "identifier");
+          touchData = t3.$index(0, identifier);
+          t5 = touchData.global;
+          t5.x = t4.$index(touchEvent, "clientX");
+          t5.y = t4.$index(touchEvent, "clientY");
         } else {
+          touchEvent = t1.$index(changedTouches, i);
+          t4 = J.getInterceptor$x(touchEvent);
+          identifier = t4.get$identifier(touchEvent);
+          touchData = t3.$index(0, identifier);
           rect = this.interactionDOMElement.getBoundingClientRect();
-          t4 = touchData.global;
-          t5 = J.getInterceptor$x(rect);
-          t4.x = J.$mul$ns(J.$sub$n(t3.$index(touchEvent, "clientX"), t5.get$left(rect)), J.$div$n(J.get$width$x(this.target), t5.get$width(rect)));
-          t4.y = J.$mul$ns(J.$sub$n(t3.$index(touchEvent, "clientY"), t5.get$top(rect)), J.$div$n(J.get$height$x(this.target), t5.get$height(rect)));
+          t5 = touchData.global;
+          t6 = t4.get$client(touchEvent);
+          t6 = t6.get$x(t6);
+          t7 = J.getInterceptor$x(rect);
+          t8 = t7.get$left(rect);
+          if (typeof t6 !== "number")
+            return t6.$sub();
+          if (typeof t8 !== "number")
+            return H.iae(t8);
+          t5.x = (t6 - t8) * J.$div$n(J.get$width$x(this.target), t7.get$width(rect));
+          t4 = t4.get$client(touchEvent);
+          t4 = t4.get$y(t4);
+          t8 = t7.get$top(rect);
+          if (typeof t4 !== "number")
+            return t4.$sub();
+          if (typeof t8 !== "number")
+            return H.iae(t8);
+          t5.y = (t4 - t8) * J.$div$n(J.get$height$x(this.target), t7.get$height(rect));
         }
         $length = this.interactiveItems.length;
         for (up = false, j = 0; j < $length; ++j) {
@@ -2241,8 +2284,8 @@ var $$ = {};
             return H.ioore(t4, j);
           item = t4[j];
           item.get$__touchData();
-          if (item.get$__touchData().$index(0, t3.$index(touchEvent, "identifier")) != null) {
-            item.set$__hit(this.hitTest$2(item, item.get$__touchData().$index(0, t3.$index(touchEvent, "identifier"))));
+          if (item.get$__touchData().$index(0, identifier) != null) {
+            item.set$__hit(this.hitTest$2(item, item.get$__touchData().$index(0, identifier)));
             touchData.originalEvent = $event;
             if (item.get$touchend() == null) {
               item.get$tap();
@@ -2262,11 +2305,11 @@ var $$ = {};
                   item.touchendoutside$1(touchData);
               item.set$__isDown(false);
             }
-            item.get$__touchData().$indexSet(0, t3.$index(touchEvent, "identifier"), null);
+            item.get$__touchData().$indexSet(0, identifier, null);
           }
         }
-        t1.push(touchData);
-        t2.$indexSet(0, t3.$index(touchEvent, "identifier"), null);
+        t2.push(touchData);
+        t3.$indexSet(0, identifier, null);
       }
     }, "call$1", "get$onTouchEnd", 2, 0, 17, 4]
   },
@@ -4785,6 +4828,14 @@ var $$ = {};
     indexOf$1: function($receiver, pattern) {
       return this.indexOf$2($receiver, pattern, 0);
     },
+    contains$2: function(receiver, other, startIndex) {
+      if (startIndex > receiver.length)
+        throw H.wrapException(P.RangeError$range(startIndex, 0, receiver.length));
+      return H.stringContainsUnchecked(receiver, other, startIndex);
+    },
+    contains$1: function($receiver, other) {
+      return this.contains$2($receiver, other, 0);
+    },
     get$isEmpty: function(receiver) {
       return receiver.length === 0;
     },
@@ -6005,21 +6056,6 @@ var $$ = {};
   },
   TimerImpl: {
     "^": "Object;_once,_inEventLoop,_handle",
-    cancel$0: function() {
-      if ($.get$globalThis().setTimeout != null) {
-        if (this._inEventLoop)
-          throw H.wrapException(P.UnsupportedError$("Timer in event loop cannot be canceled."));
-        if (this._handle == null)
-          return;
-        H.leaveJsAsync();
-        if (this._once)
-          $.get$globalThis().clearTimeout(this._handle);
-        else
-          $.get$globalThis().clearInterval(this._handle);
-        this._handle = null;
-      } else
-        throw H.wrapException(P.UnsupportedError$("Canceling a timer."));
-    },
     TimerImpl$2: function(milliseconds, callback) {
       var t1, t2;
       if (milliseconds === 0)
@@ -12022,9 +12058,46 @@ var $$ = {};
     "^": "Interceptor;width=",
     "%": "TextMetrics"
   },
+  Touch: {
+    "^": "Interceptor;identifier=",
+    get$client: function(receiver) {
+      return H.setRuntimeTypeInfo(new P.Point0(receiver.clientX, receiver.clientY), [null]);
+    },
+    "%": "Touch"
+  },
   TouchEvent: {
-    "^": "UIEvent;",
+    "^": "UIEvent;changedTouches=",
     "%": "TouchEvent"
+  },
+  TouchList: {
+    "^": "Interceptor_ListMixin_ImmutableListMixin1;",
+    get$length: function(receiver) {
+      return receiver.length;
+    },
+    $index: function(receiver, index) {
+      var t1 = receiver.length;
+      if (index >>> 0 !== index || index >= t1)
+        throw H.wrapException(P.RangeError$range(index, 0, t1));
+      return receiver[index];
+    },
+    $indexSet: function(receiver, index, value) {
+      throw H.wrapException(P.UnsupportedError$("Cannot assign element of immutable List."));
+    },
+    set$length: function(receiver, value) {
+      throw H.wrapException(P.UnsupportedError$("Cannot resize immutable List."));
+    },
+    elementAt$1: function(receiver, index) {
+      if (index < 0 || index >= receiver.length)
+        return H.ioore(receiver, index);
+      return receiver[index];
+    },
+    $isList: true,
+    $asList: function() {
+      return [W.Touch];
+    },
+    $isEfficientLength: true,
+    $isJavaScriptIndexingBehavior: true,
+    "%": "TouchList"
   },
   TrackElement: {
     "^": "HtmlElement;src}",
@@ -12129,7 +12202,7 @@ var $$ = {};
     "%": "ClientRect|DOMRect"
   },
   _NamedNodeMap: {
-    "^": "Interceptor_ListMixin_ImmutableListMixin1;",
+    "^": "Interceptor_ListMixin_ImmutableListMixin2;",
     get$length: function(receiver) {
       return receiver.length;
     },
@@ -12291,12 +12364,28 @@ var $$ = {};
     "^": "Interceptor+ListMixin;",
     $isList: true,
     $asList: function() {
-      return [W.Node];
+      return [W.Touch];
     },
     $isEfficientLength: true
   },
   Interceptor_ListMixin_ImmutableListMixin1: {
     "^": "Interceptor_ListMixin1+ImmutableListMixin;",
+    $isList: true,
+    $asList: function() {
+      return [W.Touch];
+    },
+    $isEfficientLength: true
+  },
+  Interceptor_ListMixin2: {
+    "^": "Interceptor+ListMixin;",
+    $isList: true,
+    $asList: function() {
+      return [W.Node];
+    },
+    $isEfficientLength: true
+  },
+  Interceptor_ListMixin_ImmutableListMixin2: {
+    "^": "Interceptor_ListMixin2+ImmutableListMixin;",
     $isList: true,
     $asList: function() {
       return [W.Node];
@@ -13040,7 +13129,13 @@ var $$ = {};
       }}
   },
   JsFunction: {
-    "^": "JsObject;_jsObject"
+    "^": "JsObject;_jsObject",
+    apply$2$thisArg: function(args, thisArg) {
+      var t1, t2;
+      t1 = P._convertToJS(thisArg);
+      t2 = P.List_List$from(H.setRuntimeTypeInfo(new H.MappedListIterable(args, P._convertToJS$closure()), [null, null]), true, null);
+      return P._convertToDart(this._jsObject.apply(t1, t2));
+    }
   },
   JsArray: {
     "^": "JsObject_ListMixin;_jsObject",
@@ -14763,6 +14858,7 @@ P.$double.$asComparable = [P.num];
 P.$double.$isObject = true;
 W.Node.$isNode = true;
 W.Node.$isObject = true;
+W.Touch.$isObject = true;
 P.String.$isString = true;
 P.String.$isPattern = true;
 P.String.$isComparable = true;
@@ -14786,10 +14882,10 @@ M.Enemy.$isObject = true;
 W.KeyboardEvent.$isKeyboardEvent = true;
 W.KeyboardEvent.$isObject = true;
 P.RenderingContext.$isObject = true;
-W.TouchEvent.$isObject = true;
 P.Symbol.$isSymbol = true;
 P.Symbol.$isObject = true;
 P.ContextEvent.$isObject = true;
+W.TouchEvent.$isObject = true;
 W.MouseEvent.$isMouseEvent = true;
 W.MouseEvent.$isObject = true;
 W.ProgressEvent.$isObject = true;
@@ -15080,6 +15176,9 @@ J.floor$0$n = function(receiver) {
 J.forEach$1$ax = function(receiver, a0) {
   return J.getInterceptor$ax(receiver).forEach$1(receiver, a0);
 };
+J.get$changedTouches$x = function(receiver) {
+  return J.getInterceptor$x(receiver).get$changedTouches(receiver);
+};
 J.get$children$x = function(receiver) {
   return J.getInterceptor$x(receiver).get$children(receiver);
 };
@@ -15341,7 +15440,6 @@ C.EventStreamProvider_load0 = new W.EventStreamProvider("load");
 C.EventStreamProvider_mousedown = new W.EventStreamProvider("mousedown");
 C.EventStreamProvider_readystatechange = new W.EventStreamProvider("readystatechange");
 C.EventStreamProvider_resize = new W.EventStreamProvider("resize");
-C.EventStreamProvider_touchend = new W.EventStreamProvider("touchend");
 C.EventStreamProvider_touchstart = new W.EventStreamProvider("touchstart");
 C.EventStreamProvider_webglcontextlost = new W.EventStreamProvider("webglcontextlost");
 C.EventStreamProvider_webglcontextrestored = new W.EventStreamProvider("webglcontextrestored");

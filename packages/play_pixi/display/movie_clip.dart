@@ -23,7 +23,7 @@ class MovieClip extends Sprite {
 
   num _currentFrame = 0;
   /// [read-only] The MovieClips current frame index (this may not have to be a whole number)
-  int get currentFrame => _currentFrame;
+  num get currentFrame => _currentFrame;
 
   bool _playing = false;
 

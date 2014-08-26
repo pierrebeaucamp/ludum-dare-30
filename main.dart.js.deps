@@ -125,93 +125,93 @@ file:///C:/Program Files/dart/dart-sdk/lib/typed_data/dart2js/typed_data_dart2js
 file:///C:/Program Files/dart/dart-sdk/lib/web_audio/dart2js/web_audio_dart2js.dart
 file:///C:/Program Files/dart/dart-sdk/lib/web_gl/dart2js/web_gl_dart2js.dart
 file:///C:/Program Files/dart/dart-sdk/lib/web_sql/dart2js/web_sql_dart2js.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/dart/bulletManager.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/dart/collisionManager.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/dart/cutsceneManager.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/dart/game.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/dart/inputHelper.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/dart/npcManager.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/dart/player.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/dart/world.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/main.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/core/circle.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/core/ellipse.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/core/matrix.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/core/point.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/core/polygon.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/core/rectangle.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/core/shape.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/display/display_object.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/display/display_object_container.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/display/movie_clip.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/display/sprite.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/display/sprite_batch.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/display/stage.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/extras/ext_rope.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/extras/ext_spine.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/extras/ext_strip.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/extras/tiling_sprite.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/filters/abstract_filter.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/filters/alpha_mask_filter.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/filters/blur_filter.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/filters/blur_x_filter.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/filters/blur_y_filter2.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/filters/color_matrix_filter.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/filters/color_step_filter.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/filters/cross_hatch_filter.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/filters/displacement_filter.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/filters/dot_screen_filter.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/filters/filter_block.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/filters/gray_filter.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/filters/invert_filter.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/filters/normal_map_filter.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/filters/pixelate_filter.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/filters/rgb_split_filter.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/filters/sepia_filter.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/filters/smart_blur_filter.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/filters/twist_filter.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/interaction_data.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/interaction_manager.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/loaders/asset_loader.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/loaders/atlas_loader.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/loaders/bitmap_font_loader.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/loaders/image_loader.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/loaders/json_loader.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/loaders/loader.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/loaders/spine_loader.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/loaders/sprite_sheet_loader.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/pixi.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/primitives/graphics.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/renderers/canvas/canvas_graphics.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/renderers/canvas/canvas_renderer.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/renderers/canvas/utils/canvas_mask_manager.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/renderers/canvas/utils/canvas_tinter.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/renderers/mask_manager.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/renderers/render_session.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/renderers/renderer.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/renderers/webgl/shaders/complex_primitive_shader.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/renderers/webgl/shaders/pixi_fast_shader.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/renderers/webgl/shaders/pixi_shader.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/renderers/webgl/shaders/primitive_shader.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/renderers/webgl/shaders/shader_shader.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/renderers/webgl/shaders/strip_shader.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/renderers/webgl/utils/filter_texture.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/renderers/webgl/utils/webgl_blend_mode_manager.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/renderers/webgl/utils/webgl_fast_sprite_batch.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/renderers/webgl/utils/webgl_filter_manager.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/renderers/webgl/utils/webgl_graphics.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/renderers/webgl/utils/webgl_mask_manager.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/renderers/webgl/utils/webgl_shader_manager.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/renderers/webgl/utils/webgl_shader_utils.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/renderers/webgl/utils/webgl_sprite_batch.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/renderers/webgl/utils/webgl_stencil_manager.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/renderers/webgl/webgl_renderer.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/text/bitmap_text.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/text/text_text.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/textures/base_texture.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/textures/render_texture.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/textures/texture.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/utils/detector.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/utils/event_target.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/utils/polyk.dart
-file:///C:/Users/Pierre Beaucamp/My Documents/Coding/ludum-dare-30/packages/play_pixi/utils/utils.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/dart/bulletManager.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/dart/collisionManager.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/dart/cutsceneManager.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/dart/game.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/dart/inputHelper.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/dart/npcManager.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/dart/player.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/dart/world.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/main.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/core/circle.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/core/ellipse.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/core/matrix.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/core/point.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/core/polygon.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/core/rectangle.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/core/shape.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/display/display_object.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/display/display_object_container.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/display/movie_clip.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/display/sprite.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/display/sprite_batch.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/display/stage.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/extras/ext_rope.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/extras/ext_spine.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/extras/ext_strip.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/extras/tiling_sprite.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/filters/abstract_filter.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/filters/alpha_mask_filter.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/filters/blur_filter.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/filters/blur_x_filter.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/filters/blur_y_filter2.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/filters/color_matrix_filter.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/filters/color_step_filter.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/filters/cross_hatch_filter.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/filters/displacement_filter.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/filters/dot_screen_filter.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/filters/filter_block.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/filters/gray_filter.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/filters/invert_filter.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/filters/normal_map_filter.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/filters/pixelate_filter.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/filters/rgb_split_filter.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/filters/sepia_filter.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/filters/smart_blur_filter.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/filters/twist_filter.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/interaction_data.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/interaction_manager.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/loaders/asset_loader.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/loaders/atlas_loader.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/loaders/bitmap_font_loader.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/loaders/image_loader.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/loaders/json_loader.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/loaders/loader.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/loaders/spine_loader.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/loaders/sprite_sheet_loader.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/pixi.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/primitives/graphics.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/renderers/canvas/canvas_graphics.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/renderers/canvas/canvas_renderer.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/renderers/canvas/utils/canvas_mask_manager.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/renderers/canvas/utils/canvas_tinter.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/renderers/mask_manager.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/renderers/render_session.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/renderers/renderer.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/renderers/webgl/shaders/complex_primitive_shader.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/renderers/webgl/shaders/pixi_fast_shader.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/renderers/webgl/shaders/pixi_shader.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/renderers/webgl/shaders/primitive_shader.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/renderers/webgl/shaders/shader_shader.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/renderers/webgl/shaders/strip_shader.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/renderers/webgl/utils/filter_texture.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/renderers/webgl/utils/webgl_blend_mode_manager.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/renderers/webgl/utils/webgl_fast_sprite_batch.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/renderers/webgl/utils/webgl_filter_manager.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/renderers/webgl/utils/webgl_graphics.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/renderers/webgl/utils/webgl_mask_manager.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/renderers/webgl/utils/webgl_shader_manager.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/renderers/webgl/utils/webgl_shader_utils.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/renderers/webgl/utils/webgl_sprite_batch.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/renderers/webgl/utils/webgl_stencil_manager.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/renderers/webgl/webgl_renderer.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/text/bitmap_text.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/text/text_text.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/textures/base_texture.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/textures/render_texture.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/textures/texture.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/utils/detector.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/utils/event_target.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/utils/polyk.dart
+file:///C:/Users/Pierre%20Beaucamp/Documents/Coding/ludum-dare-30/packages/play_pixi/utils/utils.dart
