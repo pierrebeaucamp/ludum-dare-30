@@ -14102,7 +14102,7 @@ var $$ = {};
     }
   },
   CutsceneManager: {
-    "^": "Object;initialized?,playing,scene,startCamera,game,cutscenes",
+    "^": "Object;initialized?,playing,scene,friendlyCounter,startCamera,game,cutscenes",
     play$1: function(_, s) {
       if (!this.playing) {
         this.playing = true;
@@ -14235,7 +14235,7 @@ var $$ = {};
       var t1, t2;
       this.bulletManager = new M.BulletManager(this, H.setRuntimeTypeInfo([], [M.Bullet]));
       this.collisionManager = new M.CollisionManager(this);
-      this.cutsceneManager = new M.CutsceneManager(false, false, 0, null, this, P.LinkedHashMap_LinkedHashMap$_literal(["tap", 0, "intro", 1, "battlefield", 2, "mercy", 3, "sourrounded", 4, "final_choice", 5, "outro_good", 6, "outro_bad", 7, "Dying", 8], null, null));
+      this.cutsceneManager = new M.CutsceneManager(false, false, 0, 0, null, this, P.LinkedHashMap_LinkedHashMap$_literal(["tap", 0, "intro", 1, "battlefield", 2, "mercy", 3, "sourrounded", 4, "final_choice", 5, "outro_good", 6, "outro_bad", 7, "Dying", 8], null, null));
       this.inputHelper = M.InputHelper$(this);
       t1 = new M.Point(null, null);
       t1.x = 0;
@@ -14444,6 +14444,10 @@ var $$ = {};
               break;
             case 1:
               t3.acceleration.x = -t4.game.player.maxSpeed;
+              if (J.$ge$n(J.$sub$n($.currentTime, t4.friendlyCounter), 6000)) {
+                M.resize(null);
+                t4.friendlyCounter = J.$mul$ns($.currentTime, 100000);
+              }
               break;
             case 2:
               break;

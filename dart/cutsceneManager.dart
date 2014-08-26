@@ -4,6 +4,7 @@ class CutsceneManager {
   bool initialized = false;
   bool playing = false;
   int scene = 0;
+  num friendlyCounter = 0;
   PIXI.Point startCamera;
 
   Game game;
@@ -54,6 +55,7 @@ class CutsceneManager {
             for (var i = 1; i <= 15; i++) {
               game.npcManager.spawnAlly(game.world.originalWidth -200 - 25 * i);
             }
+            num friendlyCounter = currentTime;
             playing = false;
           }
           break;
@@ -84,8 +86,11 @@ class CutsceneManager {
         break;
 
       case 1: // intro
-        //if ((enemy.view.position.x - game.camera.x) / modulo < 600)
-            enemy.acceleration.x = -game.player.maxSpeed;
+        enemy.acceleration.x = -game.player.maxSpeed;
+        if (currentTime - friendlyCounter >= 6000) {
+           resize();
+           friendlyCounter = currentTime * 100000;
+        }
         break;
 
       case 2: // battlefield
